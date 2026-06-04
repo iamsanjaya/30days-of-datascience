@@ -22,3 +22,5 @@ env/
 
 outputs/
 *.png
+data/
+Gutenberg/

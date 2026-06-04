@@ -20,3 +20,5 @@ env/
 
 # Data (optional — remove if you want datasets on GitHub)
 
+outputs/
+*.png

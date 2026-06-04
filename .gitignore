@@ -24,3 +24,5 @@ outputs/
 *.png
 data/
 Gutenberg/
+project-env/
+.venv/

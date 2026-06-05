@@ -30,8 +30,8 @@ real projects, not just watching tutorials.
 | Day   | Topic                                   | Project                                    | Status |
 | ----- | --------------------------------------- | ------------------------------------------ | ------ |
 | 01    | Python OOP & Data Structures            | Student Grade System                       | ✅     |
-| 02    | Functional Programming & Error Handling | Word Frequency + Sentiment Analyzer        | 🔄     |
-| 03    | NumPy Mastery                           | Distance Metrics from Scratch              | ⏳     |
+| 02    | Functional Programming & Error Handling | Word Frequency + Sentiment Analyzer        | ✅     |
+| 03    | NumPy Mastery                           | Distance Metrics from Scratch              | ✅     |
 | 04    | NumPy Linear Algebra                    | Gradient Descent from Scratch              | ⏳     |
 | 05    | Pandas EDA                              | Titanic Deep Dive                          | ⏳     |
 | 06    | Pandas Advanced                         | Multi-table Merge + Missingness Analysis   | ⏳     |
@@ -76,10 +76,26 @@ Each entry covers:
 
     30days-of-datascience/
     ├── day-01/          ← Python OOP — Student Grade System
-    ├── day-02/          ← coming soon
-    └── learning-journal/
-        ├── day-01.md
-        └── ...
+    │   ├── student.py                # Student class with OOP
+    │   ├── grader.py                 # CLI grader + leaderboard
+    │   ├── students.csv              # Sample student data
+    │   └── README.md
+    ├── day-02/          ← Functional Programming — Word Frequency + Sentiment Analyzer
+    │   ├── word_frequency.py         # Standard task
+    │   ├── sentiment_arc.py          # Out-of-box challenge
+    │   ├── README.md
+    │   ├── data/
+    │   │   └── book.txt
+    │   └── outputs/
+    │       ├── top20_words.png
+    │       └── sentiment_arc.png
+    ├── day-03/          ← NumPy — Distance Metrics from Scratch
+    │   ├── numpy_distances.py        # Standard task
+    │   ├── distance_perception.py    # Out-of-box challenge
+    │   ├── README.md
+    │   └── plots/
+    │       ├── distance_metrics.png
+    │       └── distance_perception.png
 
 ---
 

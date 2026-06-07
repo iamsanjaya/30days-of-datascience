@@ -32,7 +32,7 @@ real projects, not just watching tutorials.
 | 01    | Python OOP & Data Structures            | Student Grade System                       | ✅     |
 | 02    | Functional Programming & Error Handling | Word Frequency + Sentiment Analyzer        | ✅     |
 | 03    | NumPy Mastery                           | Distance Metrics from Scratch              | ✅     |
-| 04    | NumPy Linear Algebra                    | Gradient Descent from Scratch              | ⏳     |
+| 04    | NumPy Linear Algebra                    | Gradient Descent from Scratch              | ✅     |
 | 05    | Pandas EDA                              | Titanic Deep Dive                          | ⏳     |
 | 06    | Pandas Advanced                         | Multi-table Merge + Missingness Analysis   | ⏳     |
 | 07    | Visualization                           | Data Storytelling + Chart Deception Study  | ⏳     |
@@ -93,9 +93,25 @@ Each entry covers:
     │   ├── numpy_distances.py        # Standard task
     │   ├── distance_perception.py    # Out-of-box challenge
     │   ├── README.md
-    │   └── plots/
+    │   └── outputs/
     │       ├── distance_metrics.png
     │       └── distance_perception.png
+    ├── day-04/
+    │   ├── gradient_descent.py       # standard task
+    │   ├── divergence_threshold.py   # out-of-box challenge
+    │   ├── README.md
+    │   └── outputs/
+    │       ├── loss_curves.png
+    │       ├── predicted_vs_true.png
+    │       ├── residuals.png
+    │       ├── divergence_threshold.png
+    │       └── divergence_geometry.png
+    │
+    └── learning-journal/
+        ├── day-01.md
+        ├── day-02.md
+        ├── day-03.md
+        └── day-04.md
 
 ---
 

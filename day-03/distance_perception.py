@@ -285,11 +285,11 @@ ax2.text(
 
 plt.tight_layout()
 
-output_path = os.path.join(os.path.dirname(__file__), "plots")
+output_path = os.path.join(os.path.dirname(__file__), "outputs")
 os.makedirs(output_path, exist_ok=True)
 plt.savefig(
     os.path.join(output_path, "distance_perception.png"),
     dpi=150,
     bbox_inches="tight",
 )
-print("Out-of-box plot saved: plots/distance_perception.png")
+print("Out-of-box output saved: outputs/distance_perception.png")

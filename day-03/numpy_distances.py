@@ -195,8 +195,8 @@ if __name__ == "__main__":
 
     plt.tight_layout()
     plt.savefig(
-        "/Users/sanjayachaudhary/Desktop/projects/day-03/plots/distance_metrics.png",
+        "/Users/sanjayachaudhary/Desktop/projects/day-03/outputs/distance_metrics.png",
         dpi=150,
         bbox_inches="tight",
     )
-    print("\nPlot saved: distance_metrics.png")
+    print("\nOutput saved: distance_metrics.png")

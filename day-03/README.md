@@ -131,7 +131,7 @@ day-03/
 ├── numpy_distances.py        # Standard task
 ├── distance_perception.py         # Out-of-box challenge
 ├── README.md
-└── plots/
+└── outputs/
     ├── distance_metrics.png
     └── distance_perception.png
 ```

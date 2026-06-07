@@ -33,7 +33,7 @@ real projects, not just watching tutorials.
 | 02    | Functional Programming & Error Handling | Word Frequency + Sentiment Analyzer        | ✅     |
 | 03    | NumPy Mastery                           | Distance Metrics from Scratch              | ✅     |
 | 04    | NumPy Linear Algebra                    | Gradient Descent from Scratch              | ✅     |
-| 05    | Pandas EDA                              | Titanic Deep Dive                          | ⏳     |
+| 05    | Pandas EDA                              | Titanic Deep Dive                          | ✅     |
 | 06    | Pandas Advanced                         | Multi-table Merge + Missingness Analysis   | ⏳     |
 | 07    | Visualization                           | Data Storytelling + Chart Deception Study  | ⏳     |
 | 08    | Linear Regression                       | From Math to Code + Assumption Diagnostics | ⏳     |
@@ -106,12 +106,16 @@ Each entry covers:
     │       ├── residuals.png
     │       ├── divergence_threshold.png
     │       └── divergence_geometry.png
+    ├── day-05/
+    │    ├── eda_titanic.py       # Main EDA script
+    │    ├── README.md
     │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
         ├── day-03.md
-        └── day-04.md
+        ├── day-04.md
+        └── day-05.md
 
 ---
 

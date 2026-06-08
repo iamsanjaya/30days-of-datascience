@@ -22,4 +22,4 @@ The missingness in Cabin (77.1%) bothers me. I used it to extract deck letters b
 
 ## Tomorrow's priority
 
-Day 06 — multi-table merge + missingness pattern analysis (MCAR/MAR/MNAR classification). The missingness question from today carries directly into tomorrow's out-of-box challenge.
+Day 06 — Multi-Table Merge + Missingness Analysis (NYC TLC Dataset). The missingness question from today carries directly into tomorrow's out-of-box challenge.

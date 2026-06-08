@@ -7,7 +7,7 @@
 #           ../outputs/q1_trips_by_hour.png
 #           ../outputs/q2_median_fare.png
 #           ../outputs/q3_trip_distance.png
-#           ../outputs/q4_trip_by_payment.png
+#           ../outputs/q4_tip_by_payment.png
 #           ../outputs/q5_speed_by_hour.png
 
 

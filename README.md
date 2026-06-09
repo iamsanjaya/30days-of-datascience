@@ -35,7 +35,7 @@ real projects, not just watching tutorials.
 | 04    | NumPy Linear Algebra                    | Gradient Descent from Scratch              | ✅     |
 | 05    | Pandas EDA                              | Titanic Deep Dive                          | ✅     |
 | 06    | Pandas Advanced                         | Multi-table Merge + Missingness Analysis   | ✅     |
-| 07    | Visualization                           | Data Storytelling + Chart Deception Study  | ⏳     |
+| 07    | Visualization                           | Data Storytelling + Chart Deception Study  | ✅     |
 | 08    | Linear Regression                       | From Math to Code + Assumption Diagnostics | ⏳     |
 | 09    | Logistic Regression                     | Threshold Cost Analysis                    | ⏳     |
 | 10    | Decision Trees & Random Forest          | Path Analysis + Comparison                 | ⏳     |
@@ -107,11 +107,11 @@ Each entry covers:
     │       ├── divergence_threshold.png
     │       └── divergence_geometry.png
     ├── day-05/             ← Pandas EDA: Titanic Dataset
-    │   ├── eda_titanic.py       # Main EDA script
+    │   ├── eda_titanic.py          # Main EDA script
     │   └── README.md
     ├── day-06/             ← Pandas Advanced — NYC TLC Multi-Table Merge & Missingness Analysis
-    │   ├── 01_tlc_merge.py          ← Standard task  (run this first)
-    │   ├── 02_missingness.py        ← Out-of-box challenge (run this second)
+    │   ├── 01_tlc_merge.py          # Standard task  (run this first)
+    │   ├── 02_missingness.py        # Out-of-box challenge (run this second)
     │   ├── README.md
     │   ├── data/
     │   │   ├── raw/
@@ -126,8 +126,19 @@ Each entry covers:
     │        ├── q4_tip_by_payment.png
     │        ├── q5_speed_by_hour.png
     │        └── missingness_heatmap.png
-    │
-    │
+    ├── day-07/             ← Visualization - Data Storytelling + Chart Deception Study
+    │   ├── config.py                   # paths, constants, plot style - single
+    │   ├── 01_charts.py                # the 6 - chart EDA story
+    │   ├── 02_deception.py             # honest vs misleading chart pair
+    │   ├── README.md
+    │   └── outputs/
+    │       ├── 01_hourly_demand.png
+    │       ├── 02_fare_vs_distance.png
+    │       ├── 03_payment_tip.png
+    │       ├── 04_tip_by_dow.png
+    │       ├── 05_vendor_peak.png
+    │       ├── 06_fare_distribution.png
+    │       └── 07_deception_pair.png
     │
     │
     └── learning-journal/
@@ -136,7 +147,8 @@ Each entry covers:
         ├── day-03.md
         ├── day-04.md
         ├── day-05.md
-        └── day-06.md
+        ├── day-06.md
+        └── day-07.md
 
 ---
 

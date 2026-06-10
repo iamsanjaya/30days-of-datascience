@@ -36,7 +36,7 @@ real projects, not just watching tutorials.
 | 05    | Pandas EDA                              | Titanic Deep Dive                          | ✅     |
 | 06    | Pandas Advanced                         | Multi-table Merge + Missingness Analysis   | ✅     |
 | 07    | Visualization                           | Data Storytelling + Chart Deception Study  | ✅     |
-| 08    | Linear Regression                       | From Math to Code + Assumption Diagnostics | ⏳     |
+| 08    | Linear Regression                       | From Math to Code + Assumption Diagnostics | ✅     |
 | 09    | Logistic Regression                     | Threshold Cost Analysis                    | ⏳     |
 | 10    | Decision Trees & Random Forest          | Path Analysis + Comparison                 | ⏳     |
 | 11    | XGBoost & Evaluation                    | Metric Selection Philosophy                | ⏳     |
@@ -139,6 +139,16 @@ Each entry covers:
     │       ├── 05_vendor_peak.png
     │       ├── 06_fare_distribution.png
     │       └── 07_deception_pair.png
+    ├── day-08/             ← Linear Regression - From Math to Code + Assumption Diagnostics
+    │   ├── config.py                                # constants: paths, hyperparameters
+    │   ├── 01_linear_regression_three_ways.py       # normal equation, gradient descent, sklearn — verified identical
+    │   ├── 02_assumption_violations.py              # diagnostic toolkit: 4 OLS assumption violations with plots
+    │   ├── README.md
+    │   ├── data/
+    │   │   └── housing.csv
+    │   └── outputs/
+    │       ├── 01_three_implementations.png
+    │       └── 02_assumption_violations.png
     │
     │
     └── learning-journal/
@@ -148,7 +158,8 @@ Each entry covers:
         ├── day-04.md
         ├── day-05.md
         ├── day-06.md
-        └── day-07.md
+        ├── day-07.md
+        └── day-08.md
 
 ---
 

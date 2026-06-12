@@ -5,7 +5,7 @@ class Student:
         self.name = name
         self.grades = grades
 
-    def gpa(self) -> str:
+    def gpa(self) -> float:
         """ " Return average grade, or 0.0 if no grades."""
         return round(sum(self.grades) / len(self.grades), 2) if self.grades else 0.0
 

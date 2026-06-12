@@ -37,7 +37,7 @@ real projects, not just watching tutorials.
 | 06    | Pandas Advanced                         | Multi-table Merge + Missingness Analysis   | ✅     |
 | 07    | Visualization                           | Data Storytelling + Chart Deception Study  | ✅     |
 | 08    | Linear Regression                       | From Math to Code + Assumption Diagnostics | ✅     |
-| 09    | Logistic Regression                     | Threshold Cost Analysis                    | ⏳     |
+| 09    | Logistic Regression                     | Threshold Cost Analysis                    | ✅     |
 | 10    | Decision Trees & Random Forest          | Path Analysis + Comparison                 | ⏳     |
 | 11    | XGBoost & Evaluation                    | Metric Selection Philosophy                | ⏳     |
 | 12    | Class Imbalance                         | Degradation Analysis                       | ⏳     |
@@ -149,8 +149,19 @@ Each entry covers:
     │   └── outputs/
     │       ├── 01_three_implementations.png
     │       └── 02_assumption_violations.png
-    │
-    │
+    ├── day-09/         ← Logistic Regression + Threshold Cost Analysis
+    │   ├── config.py                   # constants: paths, costs, random state
+    │   ├── 01_train_logistic.py        # train model, ROC, confusion matrix, precision-recall
+    │   ├── 02_threshold_analysis.py    # threshold sweep: precision, recall, F1 tradeoff
+    │   ├── 03_cost_framework.py        # cost-weighted optimal threshold selection
+    │   ├── decision_document.md        # non-technical threshold decision doc for hospital setting
+    │   ├── README.md
+    │   ├── data/
+    │   │   └── heart.csv
+    │   └── outputs/
+    │       ├── 01_diagnostic_plots.png
+    │       ├── 02_threshold_analysis.png
+    │       └── 03_cost_framework.png
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -159,7 +170,8 @@ Each entry covers:
         ├── day-05.md
         ├── day-06.md
         ├── day-07.md
-        └── day-08.md
+        ├── day-08.md
+        └── day-09.md
 
 ---
 

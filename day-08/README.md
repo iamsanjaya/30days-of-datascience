@@ -7,6 +7,25 @@ plus a diagnostic toolkit for the four core OLS assumptions.
 
 ---
 
+## Structure
+
+```
+day-08/             ← Linear Regression - From Math to Code + Assumption Diagnostics
+│   ├── config.py                                # constants: paths, hyperparameters
+│   ├── 01_linear_regression_three_ways.py       # normal equation, gradient descent, sklearn — verified identical
+│   ├── 02_assumption_violations.py              # diagnostic toolkit: 4 OLS assumption violations with plots
+│   ├── README.md
+│   ├── data/
+│   │   └── housing.csv
+│   └── outputs/
+│       ├── 01_three_implementations.png
+│       └── 02_assumption_violations.png
+
+learning-journal/
+  └── day-08.md
+
+```
+
 ## Standard task — Three implementations
 
 | Implementation             | Mechanism                                     | When to use                   |

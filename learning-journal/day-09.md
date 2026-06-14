@@ -1,4 +1,4 @@
-# Day 09 — 2026-06-11
+# Day 09 — June 11, 2025
 
 ## What I built today:
 

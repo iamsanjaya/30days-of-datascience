@@ -1,8 +1,8 @@
 # %% Imports
-import sys
-import re
 from collections import Counter
 import matplotlib
+import re
+import sys
 
 matplotlib.use("Agg")  # needed if running without a display
 import matplotlib.pyplot as plt
@@ -14,22 +14,28 @@ def clean_word(word: str) -> str:
     return re.sub(r"[^a-z0-9]", "", word.lower())
 
 
-# %% Load and process file - handle All failure modes
+# %% Load and process file - handle all failure modes
 def load_words(filepath: str) -> list[str]:
     """
     Load words from a text file.
-    Handles: missing file, empty file, non-UTF-8 encoding.
-    Returns a list of cleaned, nnon-empty words.
+
+    Handles: missing file, empty file, non-UTF-8 encoding, and permission issues.
+    Returns a list of cleaned words.
     """
-    # Failure mode 1: file doesnot exist
+    raw_text = ""
+
     try:
+        # Attempt to read with UTF-8
         with open(filepath, "r", encoding="utf-8") as f:
             raw_text = f.read()
     except FileNotFoundError:
-        print(f"[Error] File not found: {filepath}")
+        print(f"[ERROR] File not found: {filepath}")
+        sys.exit(1)
+    except PermissionError:
+        print(f"[ERROR] Permission denied: {filepath}")
         sys.exit(1)
     except UnicodeDecodeError:
-        # Failure mode 2: non-UTF-8 encoding - fall back to latin-1
+        # Fall back to latin-1 if UTF-8 fails
         print("[WARNING] UTF-8 decode failed. Retrying with latin-1...")
         try:
             with open(filepath, "r", encoding="latin-1") as f:
@@ -37,90 +43,85 @@ def load_words(filepath: str) -> list[str]:
         except Exception as e:
             print(f"[ERROR] Could not read file: {e}")
             sys.exit(1)
-    except PermissionError:
-        # Failure mode 3: permission denied
-        print(f"[ERROR] Permission denied: {filepath}")
-        sys.exit(1)
 
-    # Failure mode 4: empty file
+    # Check for empty file
     if not raw_text.strip():
         print(f"[ERROR] File is empty: {filepath}")
         sys.exit(1)
 
-    # Tokenize: split on whitespace, clean each token
+    # Tokenize: split on whitespace and clean each token
     raw_words = raw_text.split()
-    cleaned = list(map(clean_word, raw_words))  # apply clean_word to all
-    non_empty = list(filter(lambda w: len(w) > 0, cleaned))  # drop empty strings
+    cleaned_words = [clean_word(w) for w in raw_words if clean_word(w)]
 
-    return non_empty
+    return cleaned_words
 
 
 # %% Stop words - common words that add no meaning
 STOP_WORDS = {
-    "the",
     "a",
+    "all",
     "an",
     "and",
-    "or",
-    "on",
-    "at",
-    "to",
-    "for",
-    "of",
-    "with",
-    "by",
-    "from",
-    "is",
-    "was",
     "are",
-    "were",
+    "as",
+    "at",
     "be",
     "been",
-    "it",
-    "he",
-    "she",
-    "they",
-    "we",
-    "i",
-    "you",
-    "his",
-    "her",
-    "their",
-    "my",
-    "your",
-    "its",
-    "this",
-    "that",
-    "not",
-    "as",
-    "if",
-    "so",
-    "do",
+    "by",
+    "could",
     "did",
+    "do",
+    "for",
+    "from",
     "had",
     "has",
     "have",
-    "will",
-    "would",
-    "could",
-    "should",
-    "said",
-    "all",
+    "he",
+    "her",
+    "his",
+    "i",
+    "if",
+    "is",
+    "it",
+    "its",
+    "my",
     "no",
-    "up",
+    "not",
+    "of",
+    "on",
+    "or",
     "out",
+    "said",
+    "she",
+    "should",
+    "so",
+    "than",
+    "that",
+    "the",
+    "their",
+    "then",
+    "they",
+    "this",
+    "to",
+    "up",
+    "was",
+    "we",
+    "were",
     "what",
+    "when",
     "which",
     "who",
-    "when",
-    "then",
-    "than",
+    "will",
+    "with",
+    "would",
+    "you",
+    "your",
 }
 
 
 def get_top_words(words: list[str], n: int = 20) -> list[tuple[str, int]]:
-    """Filter stop words and return top-N most frequent words."""
-    meaningful = list(filter(lambda w: w not in STOP_WORDS and len(w) > 2, words))
+    """Filter stop words and return top-N most frequent words longer than 2 characters."""
+    meaningful = [w for w in words if w not in STOP_WORDS and len(w) > 2]
     counter = Counter(meaningful)
     return counter.most_common(n)
 
@@ -133,6 +134,7 @@ def plot_top_words(
     words, counts = zip(*top_words)  # unpack list of tuples into two lists
 
     fig, ax = plt.subplots(figsize=(10, 7))
+    # Reverse the order so the highest frequency appears at the top of the chart
     bars = ax.barh(words[::-1], counts[::-1], color="steelblue", edgecolor="white")
 
     ax.set_xlabel("Frequency", fontsize=12)

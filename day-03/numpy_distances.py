@@ -1,4 +1,4 @@
-# DAY 3 - STandard Task: NumPy Distance Matrices from Scratch
+# DAY 3 - Standard Task: NumPy Distance Matrices from Scratch
 
 import numpy as np
 import matplotlib.pyplot as plt

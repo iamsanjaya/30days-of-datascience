@@ -1,10 +1,9 @@
 # %%
 """
-Day 07 — Out-of-Box Challenge: Lie With Charts (Ethically).
-
+Out-of-Box Challenge: Lie With Charts (Ethically).
 Takes Chart 1 (hourly demand) and produces two versions side by side:
-  LEFT  — misleading: truncated Y-axis starting at ~80% of minimum, making
-          a modest rush-hour bump look like a dramatic 38% surge.
+  LEFT  — misleading: truncated Y-axis starting at ~92% of minimum, making
+          a modest rush-hour bump look like a dramatic calculated surge.
   RIGHT — honest: Y-axis starts at zero, same data, accurate visual impression.
 
 Deception caption is embedded in the figure itself and written to a text file.
@@ -22,7 +21,6 @@ import config  # applies theme + exposes paths and titles
 
 # Data loading + preparation
 
-
 # %%
 df = pd.read_parquet(config.DATA_PATH)
 
@@ -34,7 +32,6 @@ hourly = df.groupby("pickup_hour").size().reset_index(name="trip_count")
 
 
 # Deception parameters — calculated from real data so the lie is reproducible
-
 
 true_min = int(hourly["trip_count"].min())
 true_max = int(hourly["trip_count"].max())
@@ -57,12 +54,12 @@ DECEPTION_CAPTION = (
 
 # %%
 def build_deception_pair(hourly: pd.DataFrame) -> matplotlib.figure.Figure:
-    fig, (ax_lie, ax_honest) = plt.subplots(1, 2, figsize=(14, 5), sharey=False)
+    fig, (ax_lie, ax_honest) = plt.subplots(1, 2, figsize=(14, 5.5), sharey=False)
     fig.suptitle(
         "Chart Deception Study — Same Data, Different Impression",
         fontsize=13,
         fontweight="bold",
-        y=1.01,
+        y=0.98,
     )
 
     color = "steelblue"
@@ -113,21 +110,23 @@ def build_deception_pair(hourly: pd.DataFrame) -> matplotlib.figure.Figure:
         ),
     )
 
-    # Caption below both charts
+    # FIX: Calculate layout positions first so the absolute text is placed accurately
+    fig.tight_layout()
+    fig.subplots_adjust(bottom=0.22)  # leaves exact space below for caption
 
+    # Caption below both charts safely bound
     fig.text(
         0.5,
-        -0.04,
+        0.04,
         DECEPTION_CAPTION,
         ha="center",
-        va="top",
+        va="bottom",
         fontsize=9,
         color="#333333",
         wrap=True,
         bbox=dict(boxstyle="round,pad=0.5", facecolor="#fff8e1", edgecolor="#ccaa00"),
     )
 
-    fig.tight_layout()
     return fig
 
 
@@ -142,14 +141,15 @@ def save_caption_text() -> None:
 
 # Run
 
-
 # %%
 if __name__ == "__main__":
     print("Generating deception study chart...")
-    print(f"True variation:{actual_pct}%")
-    print(f"Apparent variation:{apparent_pct}% (truncated axis)")
+    print(f"True variation: {actual_pct}%")
+    print(f"Apparent variation: {apparent_pct}% (truncated axis)")
 
     fig = build_deception_pair(hourly)
+
+    # Save visual asset
     out = config.OUTPUT_DIR / "07_deception_pair.png"
     fig.savefig(out, bbox_inches="tight")
     plt.close(fig)

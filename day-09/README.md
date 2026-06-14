@@ -1,5 +1,27 @@
 # Day 09 — Logistic Regression + Threshold as a Medical Ethics Decision
 
+## Structure
+
+```
+day-09/         ← Logistic Regression + Threshold Cost Analysis
+│   ├── config.py                   # constants: paths, costs, random state
+│   ├── 01_train_logistic.py        # train model, ROC, confusion matrix, precision-recall
+│   ├── 02_threshold_analysis.py    # threshold sweep: precision, recall, F1 tradeoff
+│   ├── 03_cost_framework.py        # cost-weighted optimal threshold selection
+│   ├── decision_document.md        # non-technical threshold decision doc for hospital setting
+│   ├── README.md
+│   ├── data/
+│   │   └── heart.csv
+│   └── outputs/
+│       ├── 01_diagnostic_plots.png
+│       ├── 02_threshold_analysis.png
+│       └── 03_cost_framework.png
+
+learning-journal/
+  └── day-09.md
+
+```
+
 ## Standard Task
 
 Binary classification on a disease screening dataset using Logistic Regression.

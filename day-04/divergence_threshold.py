@@ -64,7 +64,7 @@ def run_gd(X, y, lr, epochs=200, w0=0.0, b0=0.0):
 # Part 1 — Binary Search for the Divergence Threshold
 
 # Theory: for linear regression, GD diverges when:
-#   α > 1 / max_eigenvalue_of_Hessian
+#   lr > 1 / max_eigenvalue_of_Hessian
 #   Hessian of MSE w.r.t. w is 2 * E[X²]
 #   So theoretical threshold ≈ 1 / (2 * E[X²])
 
@@ -103,8 +103,8 @@ theoretical = 1.0 / (2.0 * X_sq_mean)
 print(f"\n{'=' * 55}")
 print(f"DIVERGENCE THRESHOLD (binary search, {iterations} iterations)")
 print(f"{'=' * 55}")
-print(f"  Experimental threshold: α ≈ {threshold_lr:.6f}")
-print(f"  Theoretical threshold:  α ≈ {theoretical:.6f}  (= 1 / 2·E[X²])")
+print(f"  Experimental threshold: lr ≈ {threshold_lr:.6f}")
+print(f"  Theoretical threshold:  lr ≈ {theoretical:.6f}  (= 1 / 2·E[X²])")
 print(f"  E[X²] = {X_sq_mean:.4f}")
 print("\nNote: the 2x discrepancy is expected — the theoretical formula")
 print("derives stability for w alone (1D). With b also updating,")
@@ -147,18 +147,18 @@ def gd_steps_1d(lr, n_steps=8):
 
 
 scenarios = {
-    f"Safe (α={lo:.4f})": {"lr": lo, "color": "#2ecc71", "style": "o-"},
-    f"Threshold (α={threshold_lr:.4f})": {
+    f"Safe (lr={lo:.4f})": {"lr": lo, "color": "#2ecc71", "style": "o-"},
+    f"Threshold (lr={threshold_lr:.4f})": {
         "lr": threshold_lr,
         "color": "#f39c12",
         "style": "s-",
     },
-    f"Diverging (α={hi:.4f})": {"lr": hi, "color": "#e74c3c", "style": "^-"},
+    f"Diverging (lr={hi:.4f})": {"lr": hi, "color": "#e74c3c", "style": "^-"},
 }
 
 fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 fig.suptitle(
-    f"Loss Landscape & GD Behaviour — Divergence Threshold ≈ {threshold_lr:.5f}",
+    f"Loss Landscape & GD Behavior — Divergence Threshold ≈ {threshold_lr:.5f}",
     fontsize=13,
     fontweight="bold",
 )
@@ -276,7 +276,7 @@ ax.plot(
     color="#27ae60",
     linewidth=2.2,
     markersize=8,
-    label="Safe α: small steps → converge",
+    label="Safe lr: small steps → converges",
     zorder=4,
 )
 for i in range(len(safe_w) - 1):
@@ -297,7 +297,7 @@ ax.plot(
     color="#e74c3c",
     linewidth=2.2,
     markersize=10,
-    label="Too-large α: overshoots → diverges",
+    label="Too-large lr: overshoots → diverges",
     zorder=4,
 )
 ax.annotate(
@@ -365,8 +365,8 @@ ax.grid(True, alpha=0.2)
 textstr = (
     "Key insight:\n"
     "• Gradient = slope at current point\n"
-    "• Step size = α × |gradient|\n"
-    "• If α too large → step overshoots minimum\n"
+    "• Step size = lr × |gradient|\n"
+    "• If lr too large → step overshoots minimum\n"
     "• Each overshoot lands on steeper slope\n"
     "• Next step is even LARGER → runaway growth"
 )
@@ -388,27 +388,23 @@ print("\n" + "=" * 60)
 print("OUT-OF-BOX CHALLENGE — SUMMARY")
 print("=" * 60)
 print(f"""
-Experimental divergence threshold: α ≈ {threshold_lr:.6f}
-Theoretical divergence threshold:  α ≈ {theoretical:.6f}
+Experimental divergence threshold: lr ≈ {threshold_lr:.6f}
+Theoretical divergence threshold:  lr ≈ {theoretical:.6f}
 
 Why do they match?
 The Hessian of MSE w.r.t. w = 2·E[X²]
 GD converges ↔ step size < curvature of the bowl
-Stability condition: α < 1 / (2·E[X²])
+Stability condition: lr < 1 / (2·E[X²])
 With E[X²] = {X_sq_mean:.4f}, threshold = {theoretical:.6f}
 
 Geometric meaning:
-The loss surface is a parabola. Its "width" is determined by
-the curvature (second derivative = Hessian).
-A steep, narrow parabola needs SMALLER steps.
-A wide, shallow parabola can tolerate LARGER steps.
+The loss surface is a parabola. Its "width" is determined by the curvature (second derivative = Hessian).
+A steep, narrow parabola needs SMALLER steps. A wide, shallow parabola can tolerate LARGER steps.
 Divergence = your step size exceeds the bowl's half-width.
 
 Real-world implication:
-In neural networks, this is why we normalize inputs.
-Un-normalized features create "elongated elliptic bowls" —
-different curvatures in different directions.
-This forces you to use a tiny LR for the steep dimension,
+In neural networks, this is why we normalize inputs. Un-normalized features create "elongated elliptic bowls" —
+different curvatures in different directions. This forces you to use a tiny LR for the steep dimension,
 which makes convergence slow in the flat dimension.
 Normalization makes the bowl rounder → higher LR → faster training.
 """)

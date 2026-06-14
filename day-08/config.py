@@ -1,6 +1,6 @@
 """
 Day 08: Linear Regression
-Single spurce of truth for all constants.
+Single source of truth for all constants.
 """
 
 from pathlib import Path

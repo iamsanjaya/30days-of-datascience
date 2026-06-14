@@ -26,6 +26,9 @@ day-06/
     ├── q4_tip_by_payment.png
     ├── q5_speed_by_hour.png
     └── missingness_heatmap.png
+
+learning-journal/
+  └── day-06.md
 ```
 
 ---

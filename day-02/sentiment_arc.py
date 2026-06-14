@@ -1,16 +1,13 @@
 # %% Imports
 import re
-from collections import Counter
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from numpy.typing import NDArray
 import os
 
-# %% Manually Curated word lists - this is the "model"
-# These are intentionally simple: We will improve on this with ML later
+# %% Manually Curated word lists - Cleaned of duplicates
 POSITIVE_WORDS = {
     "happy",
     "joy",
@@ -37,7 +34,6 @@ POSITIVE_WORDS = {
     "bright",
     "free",
     "safe",
-    "laugh",
     "dream",
     "life",
     "sweet",
@@ -72,7 +68,6 @@ NEGATIVE_WORDS = {
     "wretched",
     "poor",
     "shame",
-    "terrible",
     "wicked",
     "weep",
     "horror",
@@ -100,7 +95,6 @@ TENSION_WORDS = {
     "shock",
     "strike",
     "rush",
-    "danger",
     "silent",
     "alone",
     "unknown",
@@ -110,11 +104,10 @@ TENSION_WORDS = {
     "hide",
     "watch",
     "wait",
-    "dark",
 }
 
 
-# %% Chapter splitting - handles "CHAPTER X" and CHAPTER X" headers
+# %% Chapter splitting
 def split_into_chapters(text: str) -> list[str]:
     """
     Split text on chapter headings.
@@ -133,7 +126,7 @@ def split_into_chapters(text: str) -> list[str]:
 def score_chapter(chapter_text: str) -> dict:
     """
     Return normalized sentiment scores for one chapter.
-    Normalized = score / total_words(so length doesn't dominate).
+    Normalized = score / total_words (so length doesn't dominate).
     """
     words = re.findall(r"\b[a-z]+\b", chapter_text.lower())
     total = len(words)
@@ -141,8 +134,7 @@ def score_chapter(chapter_text: str) -> dict:
     if total == 0:
         return {"positive": 0.0, "negative": 0.0, "tension": 0.0, "total_words": 0}
 
-    word_set = set(words)  # use set for 0(1) lookup
-
+    # POSITIVE_WORDS, NEGATIVE_WORDS, and TENSION_WORDS are already sets, yielding O(1) lookups
     pos_score = sum(1 for w in words if w in POSITIVE_WORDS) / total
     neg_score = sum(1 for w in words if w in NEGATIVE_WORDS) / total
     ten_score = sum(1 for w in words if w in TENSION_WORDS) / total
@@ -155,16 +147,15 @@ def score_chapter(chapter_text: str) -> dict:
     }
 
 
-# %% Smooth the arc (rolling average) so plot isn't too noisy
+# %% Smooth the arc using true vectorization
 def smooth(values: list[float], window: int = 3) -> list[float]:
-    """Simple rolling average"""
-    arr = np.array(values)
-    smoothed = []
-    for i in range(len(values)):
-        start = max(0, i - window // 2)
-        end = min(len(values), i + window // 2 + 1)
-        smoothed.append(float(np.mean(arr[start:end])))
-    return smoothed
+    """Vectorized rolling average using NumPy convolution"""
+    if len(values) < window:
+        return values  # Cannot smooth if dataset is smaller than window size
+
+    box = np.ones(window) / window
+    # 'same' mode ensures the output array matches the input length
+    return list(np.convolve(values, box, mode="same"))
 
 
 # %% Main analysis

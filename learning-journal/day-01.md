@@ -12,6 +12,8 @@ Curved GPA can punish weak students further when class average is already high.
 
 How to handle a true tie where every tiebreaker metric is identical.
 
-## GitHub commit made: Y
+## GitHub commit made: ✅
+
+`Day-01 Student Grade System`
 
 ## Tomorrow's priority: Day 2 — word frequency counter + primitive sentiment analyzer

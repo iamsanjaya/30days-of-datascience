@@ -1,4 +1,4 @@
-# Day 04 — Learning Journal
+# Day 04 — June 06, 2025
 
 **Date:** [fill in today's date]
 **Phase:** Foundation — NumPy Linear Algebra & Gradient Descent
@@ -114,7 +114,7 @@ visually — not just reading about it — makes it stick.
 
 ## GitHub commit made: ✅
 
-## Commit message: `day-04: gradient descent from scratch + divergence threshold study`
+`day-04: gradient descent from scratch + divergence threshold study`
 
 ## Tomorrow's priority:
 

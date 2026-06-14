@@ -21,6 +21,9 @@ day-07/
 │   ├── 06_fare_distribution.png
 │   └── 07_deception_pair.png
 └── README.md
+
+learning-journal/
+  └── day-07.md
 ```
 
 ---

@@ -1,10 +1,8 @@
 # %%
 """
-Day 07 - Standard Task: 6- chart EDA visual report on NYC TLC Green Taxi data.
-
+Chart EDA visual report on NYC TLC Green Taxi data.
 Each chart answers one specific question.
 Each title is a conclusion, not a description.
-
 Charts saved to: day-07/outputs/
 """
 
@@ -53,7 +51,7 @@ def save_chart(fig: matplotlib.figure.Figure, filename: str) -> None:
     print(f"Saved: {path.name}")
 
 
-# Chart 1 - Hourly demand
+# Chart 1 — Hourly demand
 # Question: Where is trip demand concentrated through the day?
 # Conclusion: Demand peaks at 8 AM and 6 PM - midday and night are quiet.
 
@@ -80,13 +78,13 @@ def chart_hourly_demand(df: pd.DataFrame) -> None:
     ax.set_ylabel("Number of Trips")
     ax.set_title(config.TITLE_HOURLY_DEMAND)
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{int(x):,}"))
-    ax.set_ylim(0)  # always stat Y at zero for honest baseline
+    ax.set_ylim(0)  # always start Y at zero for honest baseline
 
     fig.tight_layout()
     save_chart(fig, "01_hourly_demand.png")
 
 
-# Chart 2 - Fare vs trip distance scatter
+# Chart 2 — Fare vs trip distance scatter
 # Question: Do longer trips earn proportionally more per mile?
 # Conclusion: Fare grows with distance, but short trips earn more per mile.
 
@@ -130,9 +128,9 @@ def chart_fare_distance(df: pd.DataFrame) -> None:
     save_chart(fig, "02_fare_vs_distance.png")
 
 
-# Chart 3 - Average tip amount by payment type
+# Chart 3 — Average tip amount by payment type
 # Question: Do card passengers tip more than cash passengers?
-# Conclusion: Card payments generate 5x more recorded tip revenew than cash.
+# Conclusion: Card payments generate 5x more recorded tip revenue than cash.
 # Note: Cash tips are recorded as 0.0 in TLC data, not as missing -
 #       this is MNAR (Missing Not At Random), not genuine zero-tip behaviour.
 
@@ -195,20 +193,31 @@ def chart_tip_by_dow(df: pd.DataFrame) -> None:
     df_tips = df[(df["payment_type"] == 1) & (df["tip_amount"] >= 0)].copy()
 
     fig, ax = plt.subplots(figsize=(9, 4))
-    tip_groups = [
-        df_tips.loc[df_tips["pickup_dow"] == day, "tip_amount"]
-        .dropna()
-        .to_numpy()
-        for day in DOW_ORDER
-    ]
-    ax.boxplot(
-        tip_groups,
-        tick_labels=DOW_ORDER,
-        patch_artist=True,
-        boxprops=dict(facecolor="steelblue", alpha=0.6),
-        medianprops=dict(color="crimson", linewidth=2),
+
+    # FIX: Map the integers 0-6 to steelblue since pickup_dow is numeric
+    dow_palette = {i: "steelblue" for i in range(7)}
+
+    sns.boxplot(
+        data=df_tips,
+        x="pickup_dow",
+        y="tip_amount",
+        hue="pickup_dow",
+        palette=dow_palette,
+        dodge=False,  # Prevents Seaborn from narrowing/shifting the boxes
+        legend=False,  # Prevents a redundant day-of-week legend from appearing
+        ax=ax,
         flierprops=dict(marker=".", markersize=2, alpha=0.2),
+        medianprops=dict(color="crimson", linewidth=2),
     )
+
+    # Map the x-axis tick positions (0-6) to the actual day names
+    ax.set_xticks(range(7))
+    ax.set_xticklabels(DOW_ORDER)
+
+    # Matplotlib's patch_artist equivalent in Seaborn to handle box opacity
+    for patch in ax.patches:
+        patch.set_alpha(0.6)
+
     ax.set_ylim(0, 20)
     ax.set_xlabel("Day of Week")
     ax.set_ylabel("Tip Amount ($)")

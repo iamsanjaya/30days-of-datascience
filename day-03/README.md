@@ -1,75 +1,61 @@
 # Day 03 — NumPy Distance Metrics from Scratch
 
-> **Phase 1 — Foundation** | 30-Day DS/ML Internship Roadmap
-> **Priority:** CRITICAL
+**Phase:** Foundation | **Topic:** NumPy — Arrays, Broadcasting, Vectorization
+**Status:** ✅ Complete
 
 ---
 
-## What I Built
+## Structure
 
-Two scripts implementing core distance and similarity metrics from scratch using only NumPy — no sklearn, no scipy.
+```
+day-03/
+├── numpy_distances.py        # standard task
+├── distance_perception.py    # out-of-box challenge
+├── README.md
+└── outputs/
+    ├── distance_metrics.png
+    └── distance_perception.png
 
-| Script                   | Description                                                       |
-| ------------------------ | ----------------------------------------------------------------- |
-| `numpy_distances.py`     | Standard task — 4 distance/similarity operations + visualizations |
-| `distance_perception.py` | Out-of-box challenge — "Distance is Perception"                   |
+learning-journal/
+  └── day-03.md
+```
 
 ---
 
 ## Standard Task — `numpy_distances.py`
 
-### Implementations (zero loops, fully vectorized)
+Four core distance and similarity operations implemented from scratch using only NumPy. No sklearn, no scipy.
 
-**1. Euclidean Distance**
+**What is implemented:**
 
-```
-√(Σ (aᵢ - bᵢ)²)
-```
+- Euclidean distance: `√(Σ (aᵢ - bᵢ)²)`
+- Cosine similarity: `(a · b) / (‖a‖ · ‖b‖)`
+- Row-wise L2 normalization: scales each row to unit norm
+- Pearson correlation matrix via centered dot product
 
-Measures straight-line distance in n-dimensional space. Sensitive to magnitude — large values dominate.
+All four operations are fully vectorized — zero loops.
 
-**2. Cosine Similarity**
+**Verification Results:**
 
-```
-(a · b) / (‖a‖ · ‖b‖)
-```
+| Operation                     | Result     | Verified Against    |
+| ----------------------------- | ---------- | ------------------- |
+| Euclidean distance            | 5.1962     | `np.linalg.norm` ✅ |
+| Row norms after normalization | [1. 1. 1.] | all unit ✅         |
+| Max diff — correlation matrix | 1.11e-16   | `np.corrcoef` ✅    |
 
-Measures the angle between two vectors, ignoring magnitude. Range: `[-1, 1]`.
+**Outputs:**
 
-**3. Row-wise Normalization**
-
-Scales each row to unit L2 norm (norm = 1). Equivalent to projecting onto the unit hypersphere. Used before cosine similarity comparisons.
-
-**4. Correlation Matrix (Pearson)**
-
-Manual implementation via:
-
-1. Center each column (subtract mean)
-2. Compute covariance matrix via dot product
-3. Divide by outer product of standard deviations
-
-### Verification Results
-
-```
-Euclidean Distance:  5.1962   ✓ matches np.linalg.norm
-Cosine Similarity:   0.9746
-Row norms after normalization: [1. 1. 1.]  ✓ all unit
-Max absolute difference (manual vs np.corrcoef): 1.11e-16  ✓ floating point noise
-```
-
-### Output
-
-![Distance Metrics](plots/distance_metrics.png)
+- `outputs/distance_metrics.png` — 3-panel plot: Euclidean vs Cosine scatter, row norms before/after normalization, correlation heatmap
 
 ---
 
-## Out-of-Box Challenge — "Distance is Perception"
+## Out-of-Box Challenge — `distance_perception.py`
 
-> _Find two examples where Euclidean and Cosine give OPPOSITE answers about closeness._
+**Question:** Find two examples where Euclidean and Cosine give OPPOSITE answers about closeness.
 
 ### Example 1: Euclidean-Close, Cosine-Far
 
-**Scenario:** Movie rating platform. Two users with opposite tastes.
+**Scenario:** Movie rating platform — two users with opposite tastes.
 
 | User | Action | Comedy | Preference   |
 | ---- | ------ | ------ | ------------ |
@@ -82,7 +68,8 @@ A vs B → Euclidean: 9.899  | Cosine: 0.2462  ← OPPOSITE tastes
 A vs C → Euclidean: 1.414  | Cosine: 0.9956  ← SAME tastes
 ```
 
-**The problem:** Euclidean would group A and B together. Cosine correctly separates them. A recommender using Euclidean would serve Action movies to a Comedy lover.
+**The problem:** Euclidean groups A and B together. Cosine correctly separates them.
+A recommender using Euclidean would serve Action movies to a Comedy lover.
 
 ---
 
@@ -101,54 +88,45 @@ D vs E → Euclidean: 13.416 (far)  | Cosine: 0.9721 (same taste) ✓
 D vs F → Euclidean:  3.464 (close)| Cosine: 0.7506 (diff taste) ✗
 ```
 
-**The problem:** Euclidean groups D+F together because they use the same scale. Cosine groups D+E together because they have identical preferences. Euclidean would recommend the wrong movies.
+**The problem:** Euclidean groups D+F together because they use the same scale.
+Cosine groups D+E together because they have identical preferences.
+
+**Outputs:**
+
+- `outputs/distance_perception.png` — 2-panel plot: 2D vector space (Example 1), bar comparison (Example 2)
 
 ---
 
-### Why This Matters for ML — 10-Line Explanation
+## Concepts Covered
 
-1. Distance metrics are not neutral — they embed assumptions about what "similar" means. Choosing the wrong one is a silent bug.
-2. Euclidean distance measures **absolute position**. It answers: _how much?_
-3. Cosine similarity measures **angular alignment**. It answers: _which direction?_
-4. When **magnitude** matters (house size, transaction amount), use Euclidean.
-5. When **direction** matters (user taste, document topic, word meaning), use Cosine.
-6. A movie recommender should ignore whether a user rates 1–3 or 1–10. Cosine does. Euclidean doesn't.
-7. A fraud detector cares about absolute transaction amounts. Euclidean (or scaled equivalent) is correct there.
-8. KNN and K-Means default to Euclidean. Changing the metric is often more impactful than changing the model.
-9. Word embeddings (Word2Vec, BERT) always use cosine similarity — two synonyms may have different L2 norms but near-identical directions.
-10. **Rule of thumb:** if normalization would help, use cosine. If absolute scale matters, use Euclidean.
-
-### Output
-
-![Distance Perception](plots/distance_perception.png)
+- Euclidean distance as absolute position in n-dimensional space
+- Cosine similarity as angular alignment — magnitude-invariant
+- Row-wise L2 normalization and projection onto the unit hypersphere
+- Pearson correlation via centered covariance — Bessel's correction (`n-1`)
+- Broadcasting and `np.outer` for fully vectorized matrix operations
+- When magnitude is information vs when magnitude is noise
+- Why word embeddings (Word2Vec, BERT) use cosine, not Euclidean
 
 ---
 
-## Folder Structure
+## Key Insights
 
+> **Euclidean measures how far. Cosine measures which direction.**
+> Choosing the wrong metric is a silent bug — the model trains without error
+> but recommends the wrong items, clusters the wrong users, or retrieves
+> the wrong documents.
+
+> **Rule of thumb:** if normalization would improve your results,
+> you likely need cosine. If absolute scale carries meaning, use Euclidean.
+
+---
+
+## Run
+
+```bash
+cd day-03
+source ../.venv/bin/activate
+
+python numpy_distances.py       # standard task
+python distance_perception.py   # out-of-box challenge
 ```
-day-03/
-├── numpy_distances.py        # Standard task
-├── distance_perception.py         # Out-of-box challenge
-├── README.md
-└── outputs/
-    ├── distance_metrics.png
-    └── distance_perception.png
-```
-
----
-
-## Milestone Checklist
-
-- [x] All 4 operations implemented with zero loops
-- [x] Results verified against NumPy/SciPy (max diff: 1.11e-16)
-- [x] Distance paradox examples are mathematically correct
-- [x] Written explanation is clear to a non-technical person
-- [x] Visualizations saved to `plots/`
-- [x] GitHub commit: `day-03: numpy distance metrics from scratch`
-
----
-
-## Key Takeaway
-
-> Most DS candidates can _run_ distance metrics. Almost none can explain _when each one lies_ — and build examples that prove it.

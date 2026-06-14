@@ -1,4 +1,4 @@
-# Day 06 — Learning Journal
+# Day 06 — June 08, 2025
 
 **Date :** January 2025
 **Topic :** Multi-Table Merge + Missingness Analysis (NYC TLC Dataset)

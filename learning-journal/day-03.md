@@ -1,4 +1,4 @@
-# Day 03 — Learning Journal
+# Day 03 — June 05, 2025
 
 **Date:** 2025-06-06
 **Phase:** 1 — Foundation
@@ -66,7 +66,7 @@ I used `n - 1` (Bessel's correction) in the covariance computation because that'
 
 ## GitHub Commit Made: ✅
 
-`day-03: numpy distance metrics from scratch`
+`Day 03 — NumPy Distance Metrics from Scratch + Distance -is-perception challenge`
 
 ---
 

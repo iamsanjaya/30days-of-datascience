@@ -2,7 +2,7 @@
 # Day 05 — Pandas EDA: Titanic Dataset
 # =============================================================================
 # Questions answered:
-#   Q1. Which attributes correlate most strongly with survival?
+#   Q1. Which attributes have the strongest correlation with survival?
 #   Q2. Do deck/cabin patterns differ from Pclass survival patterns?
 #   Q3. Did family size help or hurt survival odds?
 #   Q4. Was there a "golden age" range with higher survival rates?
@@ -12,7 +12,6 @@
 
 # %% [imports & setup]
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
@@ -53,7 +52,7 @@ print(f"Overall survival rate: {df['Survived'].mean():.2%}")
 
 # %% [Q1 — strongest correlates of survival]
 print("\n" + "=" * 60)
-print("Q1 — Strongest correlates of survival")
+print("Q1 — Strongest correlations of survival")
 print("=" * 60)
 
 df["Sex_encoded"] = (df["Sex"] == "female").astype(int)

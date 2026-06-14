@@ -38,7 +38,7 @@ real projects, not just watching tutorials.
 | 07    | Visualization                           | Data Storytelling + Chart Deception Study  | ✅     |
 | 08    | Linear Regression                       | From Math to Code + Assumption Diagnostics | ✅     |
 | 09    | Logistic Regression                     | Threshold Cost Analysis                    | ✅     |
-| 10    | Decision Trees & Random Forest          | Path Analysis + Comparison                 | ⏳     |
+| 10    | Decision Trees & Random Forest          | Path Analysis + Comparison                 | ✅     |
 | 11    | XGBoost & Evaluation                    | Metric Selection Philosophy                | ⏳     |
 | 12    | Class Imbalance                         | Degradation Analysis                       | ⏳     |
 | 13    | Clustering & Dimensionality Reduction   | Customer Segmentation                      | ⏳     |
@@ -108,7 +108,16 @@ Each entry covers:
     │       └── divergence_geometry.png
     ├── day-05/             ← Pandas EDA: Titanic Dataset
     │   ├── eda_titanic.py          # Main EDA script
-    │   └── README.md
+    │   ├── README.md
+    │   ├── data/
+    │   │   └── titanic_uncleaned.csv
+    │   └── outputs/
+    │       ├── oob_title_analysis.csv
+    │       ├── q1_survival_correlations.png
+    │       ├── q2_deck_vs_pclass_survival.png
+    │       ├── q3_family_size_survival.png
+    │       ├── q4_age_survival.png
+    │       └── q5_survival_score.png
     ├── day-06/             ← Pandas Advanced — NYC TLC Multi-Table Merge & Missingness Analysis
     │   ├── 01_tlc_merge.py          # Standard task  (run this first)
     │   ├── 02_missingness.py        # Out-of-box challenge (run this second)
@@ -162,6 +171,22 @@ Each entry covers:
     │       ├── 01_diagnostic_plots.png
     │       ├── 02_threshold_analysis.png
     │       └── 03_cost_framework.png
+    ├── day-10/         ← Decision Trees & Random Forest — Telco Customer Churn
+    │   ├── config.py                       # constants: paths, hyperparameters, column groups, random state
+    │   ├── 01_train_decision_tree.py       # load, clean, encode, train DT + RF, CV comparison, feature importances
+    │   ├── 02_path_tracing.py              # decision_path tracing, same-leaf analysis, probability calibration plots
+    │   ├── 03_random_forest_comparison.py  # OOB error vs n_estimators, feature importance stability across seeds
+    │   ├── README.md
+    │   ├── data/
+    │   │   └── WA_Fn-UseC_-Telco-Customer_Churn.csv.xls
+    │   └── outputs/
+    │       ├── decision_tree_structure.png
+    │       ├── dt_vs_rf_cv_comparison.png
+    │       ├── dt_vs_rf_feature_importance.png
+    │       ├── dt_vs_rf_probability_distribution.png
+    │       ├── leaf_probability_distribution.png
+    │       ├── rf_importance_stability.png
+    │       └── rf_oob_error_vs_n_estimators.png
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -171,7 +196,8 @@ Each entry covers:
         ├── day-06.md
         ├── day-07.md
         ├── day-08.md
-        └── day-09.md
+        ├── day-09.md
+        └── day-10.md
 
 ---
 

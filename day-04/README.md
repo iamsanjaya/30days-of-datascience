@@ -19,6 +19,9 @@ day-04/
 │    ├── divergence_threshold.png
 │    └── divergence_geometry.png
 
+learning-journal/
+  └── day-04.md
+
 ```
 
 ---

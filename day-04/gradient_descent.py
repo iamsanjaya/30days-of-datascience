@@ -123,9 +123,9 @@ def batch_gradient_descent(X, y, learning_rate, epochs=500, w_init=0.0, b_init=0
 EPOCHS = 10000
 
 experiments = {
-    "Too Small (α = 0.0001)": 0.0001,
-    "Just Right (α = 0.05)": 0.05,
-    "Too Large (α = 0.5)": 0.5,
+    "Too Small (lr = 0.0001)": 0.0001,
+    "Just Right (lr = 0.05)": 0.05,
+    "Too Large (lr = 0.5)": 0.5,
 }
 
 
@@ -209,7 +209,7 @@ print(f"\nSaved: {loss_plot_path}")
 # 7. Plot 2 — Predicted Line vs Actual Data (for "Just Right" LR)
 
 
-best = results["Just Right (α = 0.05)"]
+best = results["Just Right (lr = 0.05)"]
 w_pred = best["w"]
 b_pred = best["b"]
 
@@ -304,12 +304,12 @@ print(f"b = {b_pred:.4f}  (error: {abs(b_pred - TRUE_B):.4f})")
 
 print("""
 Key observations:
-• α =0.0005: Loss decreases, but very slowly. After 500 epochs, still
+• lr =0.0005: Loss decreases, but very slowly. After 500 epochs, still
     far from converged. In practice you'd need ~10x more epochs.
 
-• α =0.01:   Loss drops sharply in early epochs, then flattens near
+• lr =0.01:   Loss drops sharply in early epochs, then flattens near
     the minimum. Recovered parameters are very close to truth.
 
-• α =0.5:    Loss diverges immediately — parameters fly off to infinity.
+• lr =0.5:    Loss diverges immediately — parameters fly off to infinity.
     The gradient step overshoots the valley bottom each time.
 """)

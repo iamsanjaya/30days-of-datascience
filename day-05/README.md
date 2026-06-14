@@ -6,6 +6,27 @@ Full exploratory data analysis on the Titanic dataset answering 5 business quest
 
 ---
 
+## Structure
+
+```
+day-05/             ← Pandas EDA: Titanic Dataset
+│   ├── eda_titanic.py          # Main EDA script
+│   ├── README.md
+│   ├── data/
+│   │   └── titanic_uncleaned.csv
+│   └── outputs/
+│       ├── oob_title_analysis.csv
+│       ├── q1_survival_correlations.png
+│       ├── q2_deck_vs_pclass_survival.png
+│       ├── q3_family_size_survival.png
+│       ├── q4_age_survival.png
+│       └── q5_survival_score.png
+
+learning-journal/
+  └── day-05.md
+
+```
+
 ## Dataset
 
 - **Source:** [Kaggle — Titanic: Machine Learning from Disaster](https://www.kaggle.com/competitions/titanic)
@@ -73,18 +94,6 @@ Most Titanic analyses use Sex, Age, and Pclass. This analysis extracts **name ti
 
 ---
 
-## Files
-
-```
-day-05/
-├── data/
-│   └── titanic_uncleaned.csv   # raw Kaggle data (gitignored)
-├── eda_titanic.py               # full EDA script
-└── README.md
-```
-
----
-
 ## Key Pandas Concepts Used
 
 - `.info()`, `.describe()`, `.isnull().sum()` — baseline EDA checklist
@@ -93,3 +102,7 @@ day-05/
 - `.groupby().agg()` — multi-metric aggregation
 - `.corr()` — correlation matrix
 - feature engineering: `FamilySize`, `Deck`, `TitleGroup`, `score`
+
+```
+
+```

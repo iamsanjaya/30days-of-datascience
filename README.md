@@ -41,7 +41,7 @@ real projects, not just watching tutorials.
 | 10    | Decision Trees & Random Forest          | Path Analysis + Comparison                 | ✅     |
 | 11    | XGBoost & Evaluation                    | Metric Selection Philosophy                | ✅     |
 | 12    | Class Imbalance                         | Degradation Analysis                       | ✅     |
-| 13    | Clustering & Dimensionality Reduction   | Customer Segmentation                      | ⏳     |
+| 13    | Clustering & Dimensionality Reduction   | Customer Segmentation                      | ✅     |
 | 14    | Feature Engineering                     | Anti-Feature Ablation Study                | ⏳     |
 | 15    | sklearn Pipelines                       | Data Leakage Quiz                          | ⏳     |
 | 16    | Hyperparameter Tuning                   | Optuna + MLflow                            | ⏳     |
@@ -215,6 +215,36 @@ Each entry covers:
     │       ├── strategy_comparison.png
     │       ├── degradation_curves.png
     │       └── metric_gap_heatmap.png
+    ├── day-13/         ← clustering subjectivity study + customer profiling
+    │     ├── config.py                       # all paths, constants, hyperparameters
+    │     ├── 01_preprocess.py                # load, encode Gender, StandardScaler
+    │     ├── 02_kmeans_selection.py          # elbow method + silhouette score → pick K
+    │     ├── 03_cluster_profiles.py          # fit final K-Means, profile each cluster
+    │     ├── 04_dimensionality_reduction.py  # PCA scree + t-SNE cluster scatter
+    │     ├── 05_subjectivity.py              # K=3 vs K=5 vs K=8 — clustering as a lens
+    │     ├── data/
+    │     │    ├── raw/
+    │     │    │   └── Mall_Customers.csv
+    │     │    └── processed/
+    │     │        ├── X_scaled.csv
+    │     │        ├── df_with_encoded.csv
+    │     │        ├── df_clustered.csv
+    │     │        └── reduced_coords.csv
+    │     ├── models/
+    │     │   └── scaler.joblib
+    │     │
+    │     └── outputs/
+    │          ├── plots/
+    │          │   ├── k_selection.png
+    │          │   ├── cluster_scatter.png
+    │          │   ├── pca_visualization.png
+    │          │   ├── tsne_visualization.png
+    │          │   └── subjectivity_comparison.png
+    │          │
+    │          └── reports/
+    │              ├── cluster_profiles.csv
+    │              └── clustering_subjectivity_insight.txt
+    │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -227,7 +257,8 @@ Each entry covers:
         ├── day-09.md
         ├── day-10.md
         ├── day-11.md
-        └── day-12.md
+        ├── day-12.md
+        └── day-13.md
 
 ---
 

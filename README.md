@@ -39,7 +39,7 @@ real projects, not just watching tutorials.
 | 08    | Linear Regression                       | From Math to Code + Assumption Diagnostics | ✅     |
 | 09    | Logistic Regression                     | Threshold Cost Analysis                    | ✅     |
 | 10    | Decision Trees & Random Forest          | Path Analysis + Comparison                 | ✅     |
-| 11    | XGBoost & Evaluation                    | Metric Selection Philosophy                | ⏳     |
+| 11    | XGBoost & Evaluation                    | Metric Selection Philosophy                | ✅     |
 | 12    | Class Imbalance                         | Degradation Analysis                       | ⏳     |
 | 13    | Clustering & Dimensionality Reduction   | Customer Segmentation                      | ⏳     |
 | 14    | Feature Engineering                     | Anti-Feature Ablation Study                | ⏳     |
@@ -187,6 +187,23 @@ Each entry covers:
     │       ├── leaf_probability_distribution.png
     │       ├── rf_importance_stability.png
     │       └── rf_oob_error_vs_n_estimators.png
+    ├── day-11/         ← XGBoost & Evaluation - Metric Selection Philosophy
+    │   ├── config.py                       # shared constants: paths, random state, model params, colours
+    │   ├── 01_xgboost_titanic.py           # XGBoost vs Random Forest — Stratified 5-Fold CV + diagnostic plots
+    │   ├── 02_metric_comparison.py         # threshold tuning per metric — rescue scenario ethics analysis
+    │   ├── README.md
+    │   ├── data/
+    │   │   ├── raw/
+    │   │   │   └── titanic_uncleaned.csv   # original Kaggle Titanic — untouched
+    │   │   └── processed/
+    │   │       └── titanic_cleaned.csv     # imputed, encoded, leakage columns dropped
+    │   └── outputs/
+    │       ├── confusion_matrix.png
+    │       ├── cv_scores.png
+    │       ├── metric_comparison.png
+    │       ├── precision_recall_curve.png
+    │       ├── roc_curve.png
+    │       └── threshold_analysis.png
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -197,7 +214,8 @@ Each entry covers:
         ├── day-07.md
         ├── day-08.md
         ├── day-09.md
-        └── day-10.md
+        ├── day-10.md
+        └── day-11.md
 
 ---
 

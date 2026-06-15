@@ -40,7 +40,7 @@ real projects, not just watching tutorials.
 | 09    | Logistic Regression                     | Threshold Cost Analysis                    | ✅     |
 | 10    | Decision Trees & Random Forest          | Path Analysis + Comparison                 | ✅     |
 | 11    | XGBoost & Evaluation                    | Metric Selection Philosophy                | ✅     |
-| 12    | Class Imbalance                         | Degradation Analysis                       | ⏳     |
+| 12    | Class Imbalance                         | Degradation Analysis                       | ✅     |
 | 13    | Clustering & Dimensionality Reduction   | Customer Segmentation                      | ⏳     |
 | 14    | Feature Engineering                     | Anti-Feature Ablation Study                | ⏳     |
 | 15    | sklearn Pipelines                       | Data Leakage Quiz                          | ⏳     |
@@ -204,6 +204,17 @@ Each entry covers:
     │       ├── precision_recall_curve.png
     │       ├── roc_curve.png
     │       └── threshold_analysis.png
+    ├── day-12/         ← Class Imbalance — Strategy Comparison & Degradation Study
+    │   ├── config.py                           # shared constants: paths, random state, colours
+    │   ├── 01_imbalance_strategy_comparison.py # SMOTE · Undersampling · class_weight · Baseline — 5-Fold CV
+    │   ├── 02_outofbox_challenge.py            # manufactured imbalance 1:2 → 1:100 — degradation + gap heatmap
+    │   ├── README.md
+    │   ├── data/
+    │   │   └── breastcancer.csv                # original dataset — untouched
+    │   └── outputs/
+    │       ├── strategy_comparison.png
+    │       ├── degradation_curves.png
+    │       └── metric_gap_heatmap.png
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -215,7 +226,8 @@ Each entry covers:
         ├── day-08.md
         ├── day-09.md
         ├── day-10.md
-        └── day-11.md
+        ├── day-11.md
+        └── day-12.md
 
 ---
 

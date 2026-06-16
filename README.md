@@ -42,7 +42,7 @@ real projects, not just watching tutorials.
 | 11    | XGBoost & Evaluation                    | Metric Selection Philosophy                | ✅     |
 | 12    | Class Imbalance                         | Degradation Analysis                       | ✅     |
 | 13    | Clustering & Dimensionality Reduction   | Customer Segmentation                      | ✅     |
-| 14    | Feature Engineering                     | Anti-Feature Ablation Study                | ⏳     |
+| 14    | Feature Engineering                     | Anti-Feature Ablation Study                | ✅     |
 | 15    | sklearn Pipelines                       | Data Leakage Quiz                          | ⏳     |
 | 16    | Hyperparameter Tuning                   | Optuna + MLflow                            | ⏳     |
 | 17    | End-to-End ML Review                    | Model Card + Stress Test                   | ⏳     |
@@ -216,35 +216,56 @@ Each entry covers:
     │       ├── degradation_curves.png
     │       └── metric_gap_heatmap.png
     ├── day-13/         ← clustering subjectivity study + customer profiling
-    │     ├── config.py                       # all paths, constants, hyperparameters
-    │     ├── 01_preprocess.py                # load, encode Gender, StandardScaler
-    │     ├── 02_kmeans_selection.py          # elbow method + silhouette score → pick K
-    │     ├── 03_cluster_profiles.py          # fit final K-Means, profile each cluster
-    │     ├── 04_dimensionality_reduction.py  # PCA scree + t-SNE cluster scatter
-    │     ├── 05_subjectivity.py              # K=3 vs K=5 vs K=8 — clustering as a lens
-    │     ├── data/
-    │     │    ├── raw/
-    │     │    │   └── Mall_Customers.csv
-    │     │    └── processed/
-    │     │        ├── X_scaled.csv
-    │     │        ├── df_with_encoded.csv
-    │     │        ├── df_clustered.csv
-    │     │        └── reduced_coords.csv
-    │     ├── models/
-    │     │   └── scaler.joblib
-    │     │
-    │     └── outputs/
-    │          ├── plots/
-    │          │   ├── k_selection.png
-    │          │   ├── cluster_scatter.png
-    │          │   ├── pca_visualization.png
-    │          │   ├── tsne_visualization.png
-    │          │   └── subjectivity_comparison.png
-    │          │
-    │          └── reports/
-    │              ├── cluster_profiles.csv
-    │              └── clustering_subjectivity_insight.txt
+    │   ├── config.py                       # all paths, constants, hyperparameters
+    │   ├── 01_preprocess.py                # load, encode Gender, StandardScaler
+    │   ├── 02_kmeans_selection.py          # elbow method + silhouette score → pick K
+    │   ├── 03_cluster_profiles.py          # fit final K-Means, profile each cluster
+    │   ├── 04_dimensionality_reduction.py  # PCA scree + t-SNE cluster scatter
+    │   ├── 05_subjectivity.py              # K=3 vs K=5 vs K=8 — clustering as a lens
+    │   ├── data/
+    │   │    ├── raw/
+    │   │    │   └── Mall_Customers.csv
+    │   │    └── processed/
+    │   │        ├── X_scaled.csv
+    │   │        ├── df_with_encoded.csv
+    │   │        ├── df_clustered.csv
+    │   │        └── reduced_coords.csv
+    │   ├── models/
+    │   │   └── scaler.joblib
+    │   │
+    │   └── outputs/
+    │        ├── plots/
+    │        │   ├── k_selection.png
+    │        │   ├── cluster_scatter.png
+    │        │   ├── pca_visualization.png
+    │        │   ├── tsne_visualization.png
+    │        │   └── subjectivity_comparison.png
+    │        │
+    │        └── reports/
+    │             ├── cluster_profiles.csv
+    │             └── clustering_subjectivity_insight.txt
     │
+    ├── day-14/         ← feature engineering + anti-feature ablation study
+    │   ├── config.py                       # paths, CV settings, XGB params, thresholds
+    │   ├── 01_feature_engineering.py       # baseline vs engineered comparison (CV RMSLE)
+    │   ├── 02_anti_feature_ablation.py     # permutation importance + greedy ablation
+    │   ├── README.md
+    │   ├── utils/
+    │   │   ├── feature_builder.py          # engineered feature generation
+    │   │   ├── encoding.py                 # label encoding utilities
+    │   │   └── evaluation.py               # CV RMSLE + reporting utilities
+    │   │
+    │   ├── data/
+    │   │   ├── raw/
+    │   │   │   └── AmesHousing.csv
+    │   │   └── processed/
+    │   │       ├── engineered.csv
+    │   │       ├── ablation_log.csv
+    │   │       └── feature_importance.csv
+    │   └── outputs/
+    │       └── plots/
+    │           ├── ablation_curve.png
+    │           └── feature_importance.png
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -258,7 +279,8 @@ Each entry covers:
         ├── day-10.md
         ├── day-11.md
         ├── day-12.md
-        └── day-13.md
+        ├── day-13.md
+        └── day-14.md
 
 ---
 

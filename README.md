@@ -43,7 +43,7 @@ real projects, not just watching tutorials.
 | 12    | Class Imbalance                         | Degradation Analysis                       | ✅     |
 | 13    | Clustering & Dimensionality Reduction   | Customer Segmentation                      | ✅     |
 | 14    | Feature Engineering                     | Anti-Feature Ablation Study                | ✅     |
-| 15    | sklearn Pipelines                       | Data Leakage Quiz                          | ⏳     |
+| 15    | sklearn Pipelines                       | Data Leakage Quiz                          | ✅     |
 | 16    | Hyperparameter Tuning                   | Optuna + MLflow                            | ⏳     |
 | 17    | End-to-End ML Review                    | Model Card + Stress Test                   | ⏳     |
 | 18    | Neural Networks from Scratch            | Weight Visualization Experiment            | ⏳     |
@@ -266,6 +266,26 @@ Each entry covers:
     │       └── plots/
     │           ├── ablation_curve.png
     │           └── feature_importance.png
+    ├── day-15/          ← sklearn pipeline + grid search + leakage quiz on ames housing
+    │   ├── config.py              # All constants, paths, feature lists, hyperparams
+    │   ├── pipeline_factory.py    # build_preprocessor() + build_pipeline() — reusable
+    │   ├── 01_load_explore.py     # Load, dtype audit, missing-value audit, train/test split
+    │   ├── 02_pipeline.py         # Full pipeline + 5-fold CV + test set evaluation
+    │   ├── 03_grid_search.py      # GridSearchCV over pipeline (12 combos × 5 folds = 60 fits)
+    │   ├── 04_leakage_quiz.py     # 5-snippet leakage quiz — 3 leaky, 2 clean
+    │   └── data/
+    │   │   └── AmesHousing.csv
+    │   └── outputs/                # plots saved here
+    │       ├── 01_missing_value audit.png
+    │       ├── 01_target_distribution.png
+    │       ├── 02_cv_fold_rmse.png
+    │       ├── 02_feature_importance.png
+    │       ├── 03_default \_vs_tuned.png
+    │       ├── 03_gridsearch_heatmap_lr01.png
+    │       ├── 03_gridsearh_heatmap_lr005.png
+    │       └── 04_leakage_inflation.png
+    │
+    │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -280,7 +300,8 @@ Each entry covers:
         ├── day-11.md
         ├── day-12.md
         ├── day-13.md
-        └── day-14.md
+        ├── day-14.md
+        └── day-15.md
 
 ---
 

@@ -44,7 +44,7 @@ real projects, not just watching tutorials.
 | 13    | Clustering & Dimensionality Reduction   | Customer Segmentation                      | ✅     |
 | 14    | Feature Engineering                     | Anti-Feature Ablation Study                | ✅     |
 | 15    | sklearn Pipelines                       | Data Leakage Quiz                          | ✅     |
-| 16    | Hyperparameter Tuning                   | Optuna + MLflow                            | ⏳     |
+| 16    | Hyperparameter Tuning                   | Optuna + MLflow                            | ✅     |
 | 17    | End-to-End ML Review                    | Model Card + Stress Test                   | ⏳     |
 | 18    | Neural Networks from Scratch            | Weight Visualization Experiment            | ⏳     |
 | 19    | Keras Deep Dive                         | Architecture Search + Pruning              | ⏳     |
@@ -285,7 +285,21 @@ Each entry covers:
     │       ├── 03_gridsearh_heatmap_lr005.png
     │       └── 04_leakage_inflation.png
     │
-    │
+    ├── day-16/         ← Hyperparameter Tuning: Optuna + MLflow
+    │   ├── config.py               # All constants, paths, search space (single source of truth)
+    │   ├── data_loader.py          # Load Ames Housing, clean, one-hot encode, split
+    │   ├── optuna_tuner.py         # 55-trial Optuna study with MLflow child run logging
+    │   ├── random_vs_bayesian.py   # Out-of-box: random vs Bayesian trials, exploration labels
+    │   ├── plots.py                # All visualization logic (no plot calls elsewhere)
+    │   ├── main.py                 # Orchestrator: runs all steps in order
+    │   ├── README.md
+    │   ├── data/                   # gitignored
+    │   │   └── train.csv           # Ames Housing (from Kaggle)
+    │   └── outputs/                # gitignored
+    │       ├── optimization_history.png
+    │       ├── param_importance.png
+    │       ├── parallel_coordinates.png
+    │       └── random_vs_bayesian.png
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -301,7 +315,8 @@ Each entry covers:
         ├── day-12.md
         ├── day-13.md
         ├── day-14.md
-        └── day-15.md
+        ├── day-15.md
+        └── day-16.md
 
 ---
 

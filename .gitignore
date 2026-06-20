@@ -18,7 +18,7 @@ env/
 # macOS
 .DS_Store
 
-# Data (optional — remove if you want datasets on GitHub)
+#Data (optional — remove if you want datasets on GitHub)
 
 outputs/
 *.png
@@ -27,6 +27,6 @@ Gutenberg/
 project-env/
 .venv/
 
-# models/
+ models/
 *.joblib
 mlflow.db

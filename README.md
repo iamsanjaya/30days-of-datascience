@@ -46,7 +46,7 @@ real projects, not just watching tutorials.
 | 15    | sklearn Pipelines                       | Data Leakage Quiz                          | ✅     |
 | 16    | Hyperparameter Tuning                   | Optuna + MLflow                            | ✅     |
 | 17    | End-to-End ML Review                    | Model Card + Stress Test                   | ✅     |
-| 18    | Neural Networks from Scratch            | Weight Visualization Experiment            | ⏳     |
+| 18    | Neural Networks from Scratch            | Weight Visualization Experiment            | ✅     |
 | 19    | Keras Deep Dive                         | Architecture Search + Pruning              | ⏳     |
 | 20    | Training Dynamics                       | Regularization + LR Range Test             | ⏳     |
 | 21    | CNNs — Transfer Learning                | ResNet + Grad-CAM                          | ⏳     |
@@ -324,6 +324,41 @@ Each entry covers:
     │       └── plots/
     │           ├── predicted_vs_actual_by_era.png
     │           └── robustness_comparison.png
+    ├── day-18/         ← Neural Networks from Scratch + Weight Visualization Experiment
+    │   ├── 01_numpy_nn_scratch.py                  # 2-layer NN (784→128 ReLU→10 softmax) built from scratch in
+    │   │                                           # NumPy: forward pass, backprop, mini-batch GD on MNIST
+    │   ├── 02_keras_nn_replica.py                  # Identical architecture in Keras (plain SGD, same lr/epochs)
+    │   │                                           # to confirm the from-scratch math matches a framework
+    │   ├── 03_weight_visualization_experiment.py   # Trains a 2nd model on shuffled labels (real images,
+    │   │                                          # scrambled targets); visualizes hidden-layer weights from
+    │   │                                          # both models reshaped to 28x28 (real vs. memorized)
+    │   ├── 04_linear_softmax_templates.py         # Bonus: no-hidden-layer softmax model (784→10 direct).
+    │   │                                          # Output weights reshape into recognizable digit templates —
+    │   │                                         # contrasts with 03's uninterpretable MLP hidden-layer weights
+    │   ├── config.py                             # Paths, architecture sizes, hyperparameters for all 4 scripts
+    │   ├── README.md                             # Day-18 summary, run order, dataset source, results
+    │   ├── data/
+    │   │   └── raw/
+    │   │       └── train.csv                      # Kaggle Digit Recognizer (real MNIST, CSV format)
+    │   ├── models/                                # gitignored — trained weights/params, consumed across scripts
+    │   │   ├── numpy_nn_params.npz                # from 01_numpy_nn_scratch.py
+    │   │   ├── keras_nn_replica.keras             # from 02_keras_nn_replica.py , loaded by 03 for the "real labels" comparison
+    │   │   └── keras_nn_random_label.keras        # from 03_weight_visualization_experiment.py
+    │   │
+    │   ├── outputs/                               # tracked — figures + metrics meant for review
+    │   │   ├── metrics/
+    │   │   │   ├── numpy_nn_history.csv          # per-epoch loss/test-acc from 01
+    │   │   │   └── keras_nn_history.csv           # per-epoch loss/acc/val from 02
+    │   │   └── plots/
+    │   │       ├── weights_real_labels.png       # 03 — hidden-layer weights, real-label model
+    │   │       └── weights_shuffled_labels.png   # 03 — hidden-layer weights, shuffled-label model
+    │   │
+    │   └── utils/
+    │       ├── __init__.py
+    │       ├── data_loader.py                  # load_mnist_csv(), one_hot_encode()
+    │       ├── preprocess.py                   # prepare_data() — shared train/test prep for 03 and 04
+    │       └── nn_utils.py                     # forward/backward pass, activations, loss — used only by 01
+    │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -341,7 +376,8 @@ Each entry covers:
         ├── day-14.md
         ├── day-15.md
         ├── day-16.md
-        └── day-17.md
+        ├── day-17.md
+        └── day-18.md
 
 ---
 

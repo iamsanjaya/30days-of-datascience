@@ -27,6 +27,6 @@ Gutenberg/
 project-env/
 .venv/
 
- models/
+models/
 *.joblib
 mlflow.db

@@ -1,6 +1,6 @@
 # Day 16 — Hyperparameter Tuning: Optuna + MLflow
 
-**Date:** June 17, 2026
+**Date:** June 18, 2026
 **Dataset:** AmesHousing.csv (https://www.kaggle.com/datasets/prevek18/ames-housing-dataset)
 
 ---

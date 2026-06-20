@@ -45,7 +45,7 @@ real projects, not just watching tutorials.
 | 14    | Feature Engineering                     | Anti-Feature Ablation Study                | ✅     |
 | 15    | sklearn Pipelines                       | Data Leakage Quiz                          | ✅     |
 | 16    | Hyperparameter Tuning                   | Optuna + MLflow                            | ✅     |
-| 17    | End-to-End ML Review                    | Model Card + Stress Test                   | ⏳     |
+| 17    | End-to-End ML Review                    | Model Card + Stress Test                   | ✅     |
 | 18    | Neural Networks from Scratch            | Weight Visualization Experiment            | ⏳     |
 | 19    | Keras Deep Dive                         | Architecture Search + Pruning              | ⏳     |
 | 20    | Training Dynamics                       | Regularization + LR Range Test             | ⏳     |
@@ -300,6 +300,30 @@ Each entry covers:
     │       ├── param_importance.png
     │       ├── parallel_coordinates.png
     │       └── random_vs_bayesian.png
+    ├── day-17/         ← Model Card + Robustness Stress Test (Ames Housing)
+    │   ├── 01_rebuild_best_pipeline.py     # Rediscovers Day 15's grid-search params (never persisted),
+    │   │                                   # freezes pipeline + test split to models/
+    │   ├── 02_distribution_shift_test.py   # Old vs. new homes within the held-out test set (1960 split)
+    │   ├── 03_noise_injection_test.py      # 20% Gaussian noise on numeric test features
+    │   ├── 04_label_corruption_test.py     # 10% of test labels shuffled
+    │   ├── 05_robustness_aggregator.py     # Combines 02-04 into one table, drafts ROBUSTNESS_REPORT.md
+    │   ├── 06_visualize_results.py         # Saves robustness_comparison.png + predicted_vs_actual_by_era.png
+    │   ├── config.py                       # Paths, rediscovered grid, exact stress-test parameters
+    │   ├── README.md                       # Day-17 summary, run order, results
+    │   ├── MODEL_CARD.md                   # Six-section model card (problem, data, architecture, metrics+CI, failure modes, ethics)
+    │   ├── ROBUSTNESS_REPORT.md            # Auto-generated results table + hand-written 5-sentence reflection
+    │   ├── models/                         # .joblib artifacts (gitignored)
+    │   │   ├── best_pipeline.joblib
+    │   │   └── test_split.joblib
+    │   └── outputs/                       # JSON results + plots (gitignored)
+    │       ├── baseline_metrics.json
+    │       ├── best_params.json
+    │       ├── distribution_shift_results.json
+    │       ├── label_corruption_results.json
+    │       ├── noise_injection_results.json
+    │       └── plots/
+    │           ├── predicted_vs_actual_by_era.png
+    │           └── robustness_comparison.png
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -316,7 +340,8 @@ Each entry covers:
         ├── day-13.md
         ├── day-14.md
         ├── day-15.md
-        └── day-16.md
+        ├── day-16.md
+        └── day-17.md
 
 ---
 

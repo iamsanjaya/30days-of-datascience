@@ -47,7 +47,7 @@ real projects, not just watching tutorials.
 | 16    | Hyperparameter Tuning                   | Optuna + MLflow                            | ✅     |
 | 17    | End-to-End ML Review                    | Model Card + Stress Test                   | ✅     |
 | 18    | Neural Networks from Scratch            | Weight Visualization Experiment            | ✅     |
-| 19    | Keras Deep Dive                         | Architecture Search + Pruning              | ⏳     |
+| 19    | Keras Deep Dive                         | Architecture Search + Pruning              | ✅     |
 | 20    | Training Dynamics                       | Regularization + LR Range Test             | ⏳     |
 | 21    | CNNs — Transfer Learning                | ResNet + Grad-CAM                          | ⏳     |
 | 22    | CNNs — Data Efficiency                  | Niche Domain Classifier                    | ⏳     |
@@ -359,6 +359,39 @@ Each entry covers:
     │       ├── preprocess.py                   # prepare_data() — shared train/test prep for 03 and 04
     │       └── nn_utils.py                     # forward/backward pass, activations, loss — used only by 01
     │
+    ├── day-19/         ← Keras Deep Dive: Architecture Decisions & the Lottery Ticket Hypothesis
+    │   ├── 01_preprocess_data.py              # Clean Adult dataset, encode, scale, split
+    │   ├── 02_architecture_search.py          # Train 75 architecture configs, log results
+    │   ├── 03_train_best_architecture.py      # Train + save best config, save initial weights
+    │   ├── 04_lottery_ticket_pruning.py       # Lottery ticket + random pruning experiments
+    │   ├── 05_compare_results.py              # Generate comparison visualizations
+    │   ├── README.md                          # Project overview and results
+    │   ├── config.py                          # Centralized paths and hyperparameters
+    │   ├── data
+    │   │   ├── processed
+    │   │   │   └── splits.npz                 # Preprocessed train/val/test splits
+    │   │   └── raw
+    │   │       └── adult.csv                  # Original Adult Census Income dataset
+    │   ├── models
+    │   │   ├── best_model.keras               # Best-performing trained network
+    │   │   ├── best_model_initial_weights.npz # Original initialization for lottery-ticket rewinding
+    │   │   └── preprocessor.joblib            # Saved preprocessing pipeline
+    │   ├── outputs
+    │   │   ├── architecture_search
+    │   │   │   ├── 3d_architecture_grid.png   # 3D architecture search visualization
+    │   │   │   ├── depth_width_heatmaps.png   # Depth-width performance heatmaps
+    │   │   │   └── grid_results.csv           # Results from all 75 architectures
+    │   │   ├── best_model
+    │   │   │   ├── best_config.json           # Selected architecture configuration
+    │   │   │   ├── test_metrics.json          # Final test performance metrics
+    │   │   │   └── training_history.csv       # Epoch-by-epoch training history
+    │   │   └── pruning
+    │   │       ├── comparison.csv             # Full vs lottery-ticket vs random-pruned metrics
+    │   │       └── pruning_comparison.png     # Pruning experiment visualization
+    │   └── utils
+    │       ├── __init__.py
+    │       └── architecture.py                # Shared MLP model builder
+    │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -377,7 +410,8 @@ Each entry covers:
         ├── day-15.md
         ├── day-16.md
         ├── day-17.md
-        └── day-18.md
+        ├── day-18.md
+        └── day-19.md
 
 ---
 

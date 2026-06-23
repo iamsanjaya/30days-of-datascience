@@ -48,7 +48,7 @@ real projects, not just watching tutorials.
 | 17    | End-to-End ML Review                    | Model Card + Stress Test                   | ✅     |
 | 18    | Neural Networks from Scratch            | Weight Visualization Experiment            | ✅     |
 | 19    | Keras Deep Dive                         | Architecture Search + Pruning              | ✅     |
-| 20    | Training Dynamics                       | Regularization + LR Range Test             | ⏳     |
+| 20    | Training Dynamics                       | Regularization + LR Range Test             | ✅     |
 | 21    | CNNs — Transfer Learning                | ResNet + Grad-CAM                          | ⏳     |
 | 22    | CNNs — Data Efficiency                  | Niche Domain Classifier                    | ⏳     |
 | 23    | NLP Fundamentals                        | BoW to BERT + Failure Forensics            | ⏳     |
@@ -80,6 +80,7 @@ Each entry covers:
     │   ├── grader.py                 # CLI grader + leaderboard
     │   ├── students.csv              # Sample student data
     │   └── README.md
+    │
     ├── day-02/          ← Functional Programming — Word Frequency + Sentiment Analyzer
     │   ├── word_frequency.py         # Standard task
     │   ├── sentiment_arc.py          # Out-of-box challenge
@@ -89,6 +90,7 @@ Each entry covers:
     │   └── outputs/
     │       ├── top20_words.png
     │       └── sentiment_arc.png
+    │
     ├── day-03/          ← NumPy — Distance Metrics from Scratch
     │   ├── numpy_distances.py        # Standard task
     │   ├── distance_perception.py    # Out-of-box challenge
@@ -96,6 +98,7 @@ Each entry covers:
     │   └── outputs/
     │       ├── distance_metrics.png
     │       └── distance_perception.png
+    │
     ├── day-04/           ← NumPy — Linear Algebra & Gradient Descent
     │   ├── gradient_descent.py       # standard task
     │   ├── divergence_threshold.py   # out-of-box challenge
@@ -106,6 +109,7 @@ Each entry covers:
     │       ├── residuals.png
     │       ├── divergence_threshold.png
     │       └── divergence_geometry.png
+    │
     ├── day-05/             ← Pandas EDA: Titanic Dataset
     │   ├── eda_titanic.py          # Main EDA script
     │   ├── README.md
@@ -118,6 +122,7 @@ Each entry covers:
     │       ├── q3_family_size_survival.png
     │       ├── q4_age_survival.png
     │       └── q5_survival_score.png
+    │
     ├── day-06/             ← Pandas Advanced — NYC TLC Multi-Table Merge & Missingness Analysis
     │   ├── 01_tlc_merge.py          # Standard task  (run this first)
     │   ├── 02_missingness.py        # Out-of-box challenge (run this second)
@@ -135,6 +140,7 @@ Each entry covers:
     │        ├── q4_tip_by_payment.png
     │        ├── q5_speed_by_hour.png
     │        └── missingness_heatmap.png
+    │
     ├── day-07/             ← Visualization - Data Storytelling + Chart Deception Study
     │   ├── config.py                   # paths, constants, plot style - single
     │   ├── 01_charts.py                # the 6 - chart EDA story
@@ -148,6 +154,7 @@ Each entry covers:
     │       ├── 05_vendor_peak.png
     │       ├── 06_fare_distribution.png
     │       └── 07_deception_pair.png
+    │
     ├── day-08/             ← Linear Regression - From Math to Code + Assumption Diagnostics
     │   ├── config.py                                # constants: paths, hyperparameters
     │   ├── 01_linear_regression_three_ways.py       # normal equation, gradient descent, sklearn — verified identical
@@ -158,6 +165,7 @@ Each entry covers:
     │   └── outputs/
     │       ├── 01_three_implementations.png
     │       └── 02_assumption_violations.png
+    │
     ├── day-09/         ← Logistic Regression + Threshold Cost Analysis
     │   ├── config.py                   # constants: paths, costs, random state
     │   ├── 01_train_logistic.py        # train model, ROC, confusion matrix, precision-recall
@@ -171,6 +179,7 @@ Each entry covers:
     │       ├── 01_diagnostic_plots.png
     │       ├── 02_threshold_analysis.png
     │       └── 03_cost_framework.png
+    │
     ├── day-10/         ← Decision Trees & Random Forest — Telco Customer Churn
     │   ├── config.py                       # constants: paths, hyperparameters, column groups, random state
     │   ├── 01_train_decision_tree.py       # load, clean, encode, train DT + RF, CV comparison, feature importances
@@ -187,6 +196,7 @@ Each entry covers:
     │       ├── leaf_probability_distribution.png
     │       ├── rf_importance_stability.png
     │       └── rf_oob_error_vs_n_estimators.png
+    │
     ├── day-11/         ← XGBoost & Evaluation - Metric Selection Philosophy
     │   ├── config.py                       # shared constants: paths, random state, model params, colours
     │   ├── 01_xgboost_titanic.py           # XGBoost vs Random Forest — Stratified 5-Fold CV + diagnostic plots
@@ -204,6 +214,7 @@ Each entry covers:
     │       ├── precision_recall_curve.png
     │       ├── roc_curve.png
     │       └── threshold_analysis.png
+    │
     ├── day-12/         ← Class Imbalance — Strategy Comparison & Degradation Study
     │   ├── config.py                           # shared constants: paths, random state, colours
     │   ├── 01_imbalance_strategy_comparison.py # SMOTE · Undersampling · class_weight · Baseline — 5-Fold CV
@@ -215,6 +226,7 @@ Each entry covers:
     │       ├── strategy_comparison.png
     │       ├── degradation_curves.png
     │       └── metric_gap_heatmap.png
+    │
     ├── day-13/         ← clustering subjectivity study + customer profiling
     │   ├── config.py                       # all paths, constants, hyperparameters
     │   ├── 01_preprocess.py                # load, encode Gender, StandardScaler
@@ -266,6 +278,7 @@ Each entry covers:
     │       └── plots/
     │           ├── ablation_curve.png
     │           └── feature_importance.png
+    │
     ├── day-15/          ← sklearn pipeline + grid search + leakage quiz on ames housing
     │   ├── config.py              # All constants, paths, feature lists, hyperparams
     │   ├── pipeline_factory.py    # build_preprocessor() + build_pipeline() — reusable
@@ -300,6 +313,7 @@ Each entry covers:
     │       ├── param_importance.png
     │       ├── parallel_coordinates.png
     │       └── random_vs_bayesian.png
+    │
     ├── day-17/         ← Model Card + Robustness Stress Test (Ames Housing)
     │   ├── 01_rebuild_best_pipeline.py     # Rediscovers Day 15's grid-search params (never persisted),
     │   │                                   # freezes pipeline + test split to models/
@@ -324,6 +338,7 @@ Each entry covers:
     │       └── plots/
     │           ├── predicted_vs_actual_by_era.png
     │           └── robustness_comparison.png
+    │
     ├── day-18/         ← Neural Networks from Scratch + Weight Visualization Experiment
     │   ├── 01_numpy_nn_scratch.py                  # 2-layer NN (784→128 ReLU→10 softmax) built from scratch in
     │   │                                           # NumPy: forward pass, backprop, mini-batch GD on MNIST
@@ -392,6 +407,29 @@ Each entry covers:
     │       ├── __init__.py
     │       └── architecture.py                # Shared MLP model builder
     │
+    ├── day-20/         ← Training Dynamics: Diagnosing an Overfit CNN
+    │   ├── config.py                       # paths, hyperparameters, regularization configs
+    │   ├── 01_data_preparation.py          # verify download, class balance, overfit subset check
+    │   ├── 02_overfit_baseline.py          # train the deliberately oversized, unregularized CNN
+    │   ├── 03_regularization_comparison.py # Dropout / L2 / BatchNorm / Augmentation / EarlyStop / combined
+    │   ├── 04_lr_range_test.py             # out-of-box: LR Range Test
+    │   ├── utils/
+    │   │   ├── **init**.py
+    │   │   ├── data.py                     # PNG loading, reproducible stratified subsetting
+    │   │   ├── architecture.py             # overfit baseline + toggleable regularized CNN
+    │   │   ├── training.py                 # compile/fit helpers, history I/O, LR range test callback
+    │   │   └── visualization.py            # training-curve grids, LR range test plot
+    │   ├── data/raw/cifar10/               # gitignored — place the Kaggle download here
+    │   ├── outputs/                        # gitignored — plots + JSON histories land here
+    │   │   ├── class_balance.png
+    │   │   ├── lr_range_test.png
+    │   │   ├── overfit_baseline.png
+    │   │   ├── regularization_comparison.png
+    │   │   └── histories/                  # per-config training history, saved as JSON
+    │   ├── models/                         # gitignored — saved .keras model files
+    │   │   └── overfit_baseline.keras
+    │   └── diagnostic_report.md            # filled in with actual results
+    │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -411,7 +449,8 @@ Each entry covers:
         ├── day-16.md
         ├── day-17.md
         ├── day-18.md
-        └── day-19.md
+        ├── day-19.md
+        └── day-20.md
 
 ---
 

@@ -49,7 +49,7 @@ real projects, not just watching tutorials.
 | 18    | Neural Networks from Scratch            | Weight Visualization Experiment            | ✅     |
 | 19    | Keras Deep Dive                         | Architecture Search + Pruning              | ✅     |
 | 20    | Training Dynamics                       | Regularization + LR Range Test             | ✅     |
-| 21    | CNNs — Transfer Learning                | ResNet + Grad-CAM                          | ⏳     |
+| 21    | CNNs — Transfer Learning                | ResNet + Grad-CAM                          | ✅     |
 | 22    | CNNs — Data Efficiency                  | Niche Domain Classifier                    | ⏳     |
 | 23    | NLP Fundamentals                        | BoW to BERT + Failure Forensics            | ⏳     |
 | 24-25 | Capstone #1                             | Structured Data ML Project                 | ⏳     |
@@ -430,6 +430,32 @@ Each entry covers:
     │   │   └── overfit_baseline.keras
     │   └── diagnostic_report.md            # filled in with actual results
     │
+    ├──day-21/         ← CNNs: Transfer Learning (ResNet50 / Xception) + Grad-CAM
+    │   ├── config.py                       # all hyperparameters, paths, constants, backbone selection
+    │   ├── 01*prepare_data.py              # scan raw dir, validate files, build stratified split
+    │   ├── 02_train_frozen.py              # Phase 1: train head with frozen backbone
+    │   ├── 03_finetune.py                  # Phase 2: unfreeze last 10 layers, fine-tune
+    │   ├── 04_compare_results.py           # evaluate both models on held-out test set
+    │   ├── 05_gradcam_analysis.py          # Grad-CAM on correct vs misclassified samples
+    │   ├── 06_compare_backbones.py         # ResNet50 vs Xception side-by-side (after running both)
+    │   ├── utils/
+    │   │   ├── data.py                     # scanning, validation, splitting, tf.data pipelines
+    │   │   ├── architecture.py             # backbone + head builder, layer unfreezing
+    │   │   ├── training.py                 # compile/train/callbacks, history save/load
+    │   │   ├── gradcam.py                  # Grad-CAM heatmap computation + overlay
+    │   │   └── visualization.py            # all plotting (curves, comparisons, grids)
+    │   ├── data/raw/PetImages/             # <- place Kaggle dataset here (gitignored)
+    │   ├── outputs/                        # generated at runtime (gitignored)
+    │   │   ├── splits/                     # train.csv, val.csv, test.csv (shared across backbones)
+    │   │   ├── data_quality/               # corrupt_files_removed.csv
+    │   │   ├── curves/<backbone>/          # training curve PNGs, per backbone
+    │   │   ├── comparison/<backbone>/      # frozen vs fine-tuned metrics + plot, per backbone
+    │   │   ├── comparison/                 # backbone_comparison.png (from 06)
+    │   └── gradcam/<backbone>/             # Grad-CAM grids + analysis log CSV, per backbone
+    │   ├── models/                         # generated at runtime (gitignored)
+    │   │   ├── frozen_model_<backbone>.keras
+    │   │   └── finetuned_model_<backbone>.keras
+    │   └── README.md
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -450,7 +476,8 @@ Each entry covers:
         ├── day-17.md
         ├── day-18.md
         ├── day-19.md
-        └── day-20.md
+        ├── day-20.md
+        └── day-21.md
 
 ---
 

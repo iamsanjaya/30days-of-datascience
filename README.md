@@ -50,7 +50,7 @@ real projects, not just watching tutorials.
 | 19    | Keras Deep Dive                         | Architecture Search + Pruning              | ✅     |
 | 20    | Training Dynamics                       | Regularization + LR Range Test             | ✅     |
 | 21    | CNNs — Transfer Learning                | ResNet + Grad-CAM                          | ✅     |
-| 22    | CNNs — Data Efficiency                  | Niche Domain Classifier                    | ⏳     |
+| 22    | CNNs — Data Efficiency                  | Niche Domain Classifier                    | ✅     |
 | 23    | NLP Fundamentals                        | BoW to BERT + Failure Forensics            | ⏳     |
 | 24-25 | Capstone #1                             | Structured Data ML Project                 | ⏳     |
 | 26-27 | Capstone #2                             | Deep Learning / NLP + Live Demo            | ⏳     |
@@ -432,7 +432,7 @@ Each entry covers:
     │
     ├──day-21/         ← CNNs: Transfer Learning (ResNet50 / Xception) + Grad-CAM
     │   ├── config.py                       # all hyperparameters, paths, constants, backbone selection
-    │   ├── 01*prepare_data.py              # scan raw dir, validate files, build stratified split
+    │   ├── 01_prepare_data.py              # scan raw dir, validate files, build stratified split
     │   ├── 02_train_frozen.py              # Phase 1: train head with frozen backbone
     │   ├── 03_finetune.py                  # Phase 2: unfreeze last 10 layers, fine-tune
     │   ├── 04_compare_results.py           # evaluate both models on held-out test set
@@ -445,17 +445,104 @@ Each entry covers:
     │   │   ├── gradcam.py                  # Grad-CAM heatmap computation + overlay
     │   │   └── visualization.py            # all plotting (curves, comparisons, grids)
     │   ├── data/raw/PetImages/             # <- place Kaggle dataset here (gitignored)
-    │   ├── outputs/                        # generated at runtime (gitignored)
-    │   │   ├── splits/                     # train.csv, val.csv, test.csv (shared across backbones)
-    │   │   ├── data_quality/               # corrupt_files_removed.csv
-    │   │   ├── curves/<backbone>/          # training curve PNGs, per backbone
-    │   │   ├── comparison/<backbone>/      # frozen vs fine-tuned metrics + plot, per backbone
-    │   │   ├── comparison/                 # backbone_comparison.png (from 06)
-    │   └── gradcam/<backbone>/             # Grad-CAM grids + analysis log CSV, per backbone
-    │   ├── models/                         # generated at runtime (gitignored)
-    │   │   ├── frozen_model_<backbone>.keras
-    │   │   └── finetuned_model_<backbone>.keras
-    │   └── README.md
+    │   ├── outputs/                                # Generated training outputs, metrics, and visualizations
+    │   │   ├── comparison/                         # Model comparison results and evaluation summaries
+    │   │   │   ├── backbone_comparison.png         # ResNet50 vs Xception performance comparison
+    │   │   │   ├── resnet50/                       # ResNet50 evaluation artifacts
+    │   │   │   │   ├── frozen_vs_finetuned_metrics.png  # Frozen vs fine-tuned metrics comparison
+    │   │   │   │   └── test_set_metrics.json       # Test set evaluation metrics
+    │   │   │   └── xception/                       # Xception evaluation artifacts
+    │   │   │       ├── frozen_vs_finetuned_metrics.png  # Frozen vs fine-tuned metrics comparison
+    │   │   │       └── test_set_metrics.json       # Test set evaluation metrics
+    │   │   ├── curves/                             # Training and validation learning curves
+    │   │   │   ├── resnet50/                       # ResNet50 training history plots
+    │   │   │   │   ├── combined_frozen_vs_finetune_curves.png  # Combined training curves
+    │   │   │   │   ├── phase1_frozen_curves.png    # Frozen-backbone training curves
+    │   │   │   │   └── phase2_finetune_curves.png  # Fine-tuning training curves
+    │   │   │   └── xception/                       # Xception training history plots
+    │   │   │       ├── combined_frozen_vs_finetune_curves.png  # Combined training curves
+    │   │   │       ├── phase1_frozen_curves.png    # Frozen-backbone training curves
+    │   │   │       └── phase2_finetune_curves.png  # Fine-tuning training curves
+    │   │   ├── data_quality/                       # Dataset cleaning reports
+    │   │   │   └── corrupt_files_removed.csv       # Removed corrupted image records
+    │   │   ├── finetune_history_resnet50.json      # ResNet50 fine-tuning history
+    │   │   ├── finetune_history_xception.json      # Xception fine-tuning history
+    │   │   ├── frozen_history_resnet50.json        # ResNet50 frozen-stage history
+    │   │   ├── frozen_history_xception.json        # Xception frozen-stage history
+    │   │   ├── gradcam/                            # Model explainability outputs
+    │   │   │   └── resnet50/
+    │   │   │       ├── gradcam_analysis_log.csv    # Grad-CAM prediction log
+    │   │   │       ├── gradcam_correct.png         # Correct prediction visualization
+    │   │   │       └── gradcam_misclassified.png   # Misclassified prediction visualization
+    │   │   └── splits/                             # Dataset split manifests
+    │   │       ├── test.csv                        # Test set image paths and labels
+    │   │       ├── train.csv                       # Training set image paths and labels
+    │   │       └── val.csv                         # Validation set image paths and labels
+    │   ├── models/                                 # Saved trained model checkpoints
+    │   │   ├── finetuned_model_resnet50.keras      # Fine-tuned ResNet50 model
+    │   │   ├── finetuned_model_xception.keras      # Fine-tuned Xception model
+    │   │   ├── frozen_model_resnet50.keras         # Frozen-backbone ResNet50 model
+    │   │   └── frozen_model_xception.keras         # Frozen-backbone Xception model
+    │   └── README.md                               # Project documentation and experiment analysis
+    │
+    ├── day-22/         ← CNNs: Data Efficiency + Niche Domain Classifier
+    │   ├── config.py                         # Central configuration and dataset paths
+    │   ├── 01_create_subsets.py              # Creates stratified Cats vs Dogs subsets (100%→5%)
+    │   ├── 02_train_models.py                # Trains ResNet50 models on each subset
+    │   ├── 03_augmentation_experiment.py     # Tests augmentation on small-data subsets
+    │   ├── 04_compare_results.py             # Generates accuracy curves and comparison plots
+    │   ├── 05_prepare_niche_dataset.py       # Creates train/val/test/unlabeled digit splits
+    │   ├── 06_train_baseline_cnn.py          # Trains a CNN from scratch on 450 images
+    │   ├── 07_train_with_augmentation.py     # Trains CNN with data augmentation
+    │   ├── 08_train_transfer_learning.py     # MobileNetV2 transfer learning and fine-tuning
+    │   ├── 09_evaluate_with_tta.py           # Evaluates model using Test-Time Augmentation
+    │   ├── 10_pseudo_labeling.py             # Semi-supervised learning with pseudo-labels
+    │   ├── 11_compare_niche_results.py       # Compares all niche-domain techniques
+    │   ├── utils/
+    │   │   ├── data.py                       # Dataset loading and subset generation utilities
+    │   │   ├── architecture.py               # ResNet50 classifier architecture
+    │   │   ├── training.py                   # Shared training and evaluation functions
+    │   │   ├── visualization.py              # Plotting and result visualization helpers
+    │   │   ├── niche_data.py                 # Devanagari dataset and TTA utilities
+    │   │   └── niche_architecture.py         # Baseline CNN and MobileNetV2 architectures
+    │   ├── outputs/                          # Generated manifests, JSON results, and plots
+    │   │   ├── niche_manifests/              # Dataset split manifests
+    │   │   │   ├── test.csv                  # Test set image paths and labels
+    │   │   │   ├── train.csv                 # 450-image training pool
+    │   │   │   ├── unlabeled.csv             # Unlabeled pool for pseudo-labeling
+    │   │   │   └── val.csv                   # Validation set image paths and labels
+    │   │   ├── plots/                        # Generated visualizations
+    │   │   │   ├── augmentation_comparison.png      # Augmentation vs no-augmentation comparison
+    │   │   │   ├── data_efficiency_curve.png        # Accuracy vs training-data-size curve
+    │   │   │   └── niche_techniques_comparison.png  # Niche-domain technique comparison chart
+    │   │   ├── results/                             # Experiment metrics and summaries
+    │   │   │   ├── augmentation_results.json        # Augmentation experiment results
+    │   │   │   ├── data_efficiency_results.json     # Data-efficiency experiment metrics
+    │   │   │   ├── niche_results.json              # Niche-domain experiment results
+    │   │   │   └── niche_summary_table.csv         # Final technique comparison table
+    │   │   └── subsets/                      # Stratified Cats vs Dogs subsets
+    │   │       ├── subset_005pct.csv         # 5% training subset manifest
+    │   │       ├── subset_010pct.csv         # 10% training subset manifest
+    │   │       ├── subset_025pct.csv         # 25% training subset manifest
+    │   │       ├── subset_050pct.csv         # 50% training subset manifest
+    │   │       └── subset_100pct.csv         # Full training set manifest
+    │   ├── models/                           # Saved trained model checkpoints
+    │   │   ├── niche_baseline_cnn.keras              # Baseline CNN trained from scratch
+    │   │   ├── niche_cnn_augmented.keras             # CNN trained with augmentation
+    │   │   ├── niche_pseudo_labeled_finetuned.keras  # Fine-tuned transfer model after pseudo-labeling
+    │   │   ├── niche_pseudo_labeled_frozen.keras     # Frozen-backbone model after pseudo-labeling
+    │   │   ├── niche_transfer_finetuned.keras        # Fine-tuned MobileNetV2 transfer model
+    │   │   ├── niche_transfer_frozen.keras           # Frozen-backbone MobileNetV2 model
+    │   │   ├── niche_transfer_model.keras            # Best transfer-learning model used for evaluation
+    │   │   ├── resnet50_subset_005pct.keras          # ResNet50 trained on 5% Cats vs Dogs data
+    │   │   ├── resnet50_subset_005pct_augmented.keras # 5% subset model with augmentation
+    │   │   ├── resnet50_subset_010pct.keras          # ResNet50 trained on 10% data
+    │   │   ├── resnet50_subset_010pct_augmented.keras # 10% subset model with augmentation
+    │   │   ├── resnet50_subset_025pct.keras          # ResNet50 trained on 25% data
+    │   │   ├── resnet50_subset_050pct.keras          # ResNet50 trained on 50% data
+    │   │   └── resnet50_subset_100pct.keras          # ResNet50 trained on full dataset
+    │   └── README.md                                 # Project documentation and experiment analysis
+    │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -477,7 +564,8 @@ Each entry covers:
         ├── day-18.md
         ├── day-19.md
         ├── day-20.md
-        └── day-21.md
+        ├── day-21.md
+        └── day-22.md
 
 ---
 

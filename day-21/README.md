@@ -51,31 +51,59 @@ This dataset ships with a small number of zero-byte / undecodable JPEGs — conf
 
 ```
 day-21-cnn-transfer-learning/
-├── config.py                  # all hyperparameters, paths, constants, backbone selection
-├── 01_prepare_data.py         # scan raw dir, validate files, build stratified split
-├── 02_train_frozen.py         # Phase 1: train head with frozen backbone
-├── 03_finetune.py             # Phase 2: unfreeze last 10 layers, fine-tune
-├── 04_compare_results.py      # evaluate both models on held-out test set
-├── 05_gradcam_analysis.py     # Grad-CAM on correct vs misclassified samples
-├── 06_compare_backbones.py    # ResNet50 vs Xception side-by-side (after running both)
+├── config.py                       # all hyperparameters, paths, constants, backbone selection
+├── 01_prepare_data.py              # scan raw dir, validate files, build stratified split
+├── 02_train_frozen.py              # Phase 1: train head with frozen backbone
+├── 03_finetune.py                  # Phase 2: unfreeze last 10 layers, fine-tune
+├── 04_compare_results.py           # evaluate both models on held-out test set
+├── 05_gradcam_analysis.py          # Grad-CAM on correct vs misclassified samples
+├── 06_compare_backbones.py         # ResNet50 vs Xception side-by-side (after running both)
 ├── utils/
-│   ├── data.py                # scanning, validation, splitting, tf.data pipelines
-│   ├── architecture.py        # backbone + head builder, layer unfreezing
-│   ├── training.py            # compile/train/callbacks, history save/load
-│   ├── gradcam.py             # Grad-CAM heatmap computation + overlay
-│   └── visualization.py       # all plotting (curves, comparisons, grids)
-├── data/raw/PetImages/        # <- place Kaggle dataset here (gitignored)
-├── outputs/                   # generated at runtime (gitignored)
-│   ├── splits/                # train.csv, val.csv, test.csv (shared across backbones)
-│   ├── data_quality/          # corrupt_files_removed.csv
-│   ├── curves/<backbone>/     # training curve PNGs, per backbone
-│   ├── comparison/<backbone>/ # frozen vs fine-tuned metrics + plot, per backbone
-│   ├── comparison/            # backbone_comparison.png (from 06)
-│   └── gradcam/<backbone>/    # Grad-CAM grids + analysis log CSV, per backbone
-├── models/                    # generated at runtime (gitignored)
-│   ├── frozen_model_<backbone>.keras
-│   └── finetuned_model_<backbone>.keras
-└── README.md
+│   ├── data.py                     # scanning, validation, splitting, tf.data pipelines
+│   ├── architecture.py             # backbone + head builder, layer unfreezing
+│   ├── training.py                 # compile/train/callbacks, history save/load
+│   ├── gradcam.py                  # Grad-CAM heatmap computation + overlay
+│   └── visualization.py            # all plotting (curves, comparisons, grids)
+├── data/raw/PetImages/             # <- place Kaggle dataset here (gitignored)
+├── outputs/                                # Generated training outputs, metrics, and visualizations
+│   ├── comparison/                         # Model comparison results and evaluation summaries
+│   │   ├── backbone_comparison.png         # ResNet50 vs Xception performance comparison
+│   │   ├── resnet50/                       # ResNet50 evaluation artifacts
+│   │   │   ├── frozen_vs_finetuned_metrics.png  # Frozen vs fine-tuned metrics comparison
+│   │   │   └── test_set_metrics.json       # Test set evaluation metrics
+│   │   └── xception/                       # Xception evaluation artifacts
+│   │       ├── frozen_vs_finetuned_metrics.png  # Frozen vs fine-tuned metrics comparison
+│   │       └── test_set_metrics.json       # Test set evaluation metrics
+│   ├── curves/                             # Training and validation learning curves
+│   │   ├── resnet50/                       # ResNet50 training history plots
+│   │   │   ├── combined_frozen_vs_finetune_curves.png  # Combined training curves
+│   │   │   ├── phase1_frozen_curves.png    # Frozen-backbone training curves
+│   │   │   └── phase2_finetune_curves.png  # Fine-tuning training curves
+│   │   └── xception/                       # Xception training history plots
+│   │       ├── combined_frozen_vs_finetune_curves.png  # Combined training curves
+│   │       ├── phase1_frozen_curves.png    # Frozen-backbone training curves
+│   │       └── phase2_finetune_curves.png  # Fine-tuning training curves
+│   ├── data_quality/                       # Dataset cleaning reports
+│   │   └── corrupt_files_removed.csv       # Removed corrupted image records
+│   ├── finetune_history_resnet50.json      # ResNet50 fine-tuning history
+│   ├── finetune_history_xception.json      # Xception fine-tuning history
+│   ├── frozen_history_resnet50.json        # ResNet50 frozen-stage history
+│   ├── frozen_history_xception.json        # Xception frozen-stage history
+│   ├── gradcam/                            # Model explainability outputs
+│   │   └── resnet50/
+│   │       ├── gradcam_analysis_log.csv    # Grad-CAM prediction log
+│   │       ├── gradcam_correct.png         # Correct prediction visualization
+│   │       └── gradcam_misclassified.png   # Misclassified prediction visualization
+│   └── splits/                             # Dataset split manifests
+│          ├── test.csv                        # Test set image paths and labels
+│          ├── train.csv                       # Training set image paths and labels
+│          └── val.csv                         # Validation set image paths and labels
+├── models/                                 # Saved trained model checkpoints
+│   ├── finetuned_model_resnet50.keras      # Fine-tuned ResNet50 model
+│   ├── finetuned_model_xception.keras      # Fine-tuned Xception model
+│   ├── frozen_model_resnet50.keras         # Frozen-backbone ResNet50 model
+│   └── frozen_model_xception.keras         # Frozen-backbone Xception model
+└── README.md                               # Project documentation and experiment analysis
 
 learning-journal/
     └── day-21.md

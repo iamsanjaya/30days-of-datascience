@@ -1,0 +1,43 @@
+{
+  "model_name": "bert",
+  "accuracy": 0.8366496992133272,
+  "macro_f1": 0.7809127679398028,
+  "weighted_f1": 0.8336740744181146,
+  "train_seconds": 212.40260613400005,
+  "inference_seconds": 4.224202513000023,
+  "inference_seconds_per_1000": 1.954744337343833,
+  "model_size_mb": 256.1077308654785,
+  "classification_report": {
+    "negative": {
+      "precision": 0.8859957776213934,
+      "recall": 0.9250551065393093,
+      "f1-score": 0.9051042415528396,
+      "support": 1361.0
+    },
+    "neutral": {
+      "precision": 0.7114914425427873,
+      "recall": 0.6367614879649891,
+      "f1-score": 0.6720554272517321,
+      "support": 457.0
+    },
+    "positive": {
+      "precision": 0.7794561933534743,
+      "recall": 0.7521865889212828,
+      "f1-score": 0.7655786350148368,
+      "support": 343.0
+    },
+    "accuracy": 0.8366496992133272,
+    "macro avg": {
+      "precision": 0.7923144711725517,
+      "recall": 0.7713343944751938,
+      "f1-score": 0.7809127679398028,
+      "support": 2161.0
+    },
+    "weighted avg": {
+      "precision": 0.8321820068972752,
+      "recall": 0.8366496992133272,
+      "f1-score": 0.8336740744181146,
+      "support": 2161.0
+    }
+  }
+}

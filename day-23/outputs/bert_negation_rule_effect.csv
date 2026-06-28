@@ -1,0 +1,4 @@
+stage,accuracy,macro_f1,fixed,broke,changed
+before_rule,0.8366496992133272,0.7809127679398028,,,
+after_negation_rule,0.8320222119389171,0.7715998366410094,,,
+diagnostics,,,13.0,23.0,42.0

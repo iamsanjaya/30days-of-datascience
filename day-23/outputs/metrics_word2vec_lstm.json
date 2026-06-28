@@ -1,0 +1,43 @@
+{
+  "model_name": "word2vec_lstm",
+  "accuracy": 0.7769551133734383,
+  "macro_f1": 0.6909054334076233,
+  "weighted_f1": 0.7650019549742805,
+  "train_seconds": 21.515843312000015,
+  "inference_seconds": 0.45126792799999293,
+  "inference_seconds_per_1000": 0.20882365941693334,
+  "model_size_mb": 10.362724304199219,
+  "classification_report": {
+    "negative": {
+      "precision": 0.8177083333333334,
+      "recall": 0.922850844966936,
+      "f1-score": 0.867103900586814,
+      "support": 1361.0
+    },
+    "neutral": {
+      "precision": 0.6160714285714286,
+      "recall": 0.45295404814004375,
+      "f1-score": 0.5220680958385876,
+      "support": 457.0
+    },
+    "positive": {
+      "precision": 0.7474048442906575,
+      "recall": 0.6297376093294461,
+      "f1-score": 0.6835443037974683,
+      "support": 343.0
+    },
+    "accuracy": 0.7769551133734383,
+    "macro avg": {
+      "precision": 0.7270615353984731,
+      "recall": 0.6685141674788087,
+      "f1-score": 0.6909054334076233,
+      "support": 2161.0
+    },
+    "weighted avg": {
+      "precision": 0.7639081657174943,
+      "recall": 0.7769551133734383,
+      "f1-score": 0.7650019549742805,
+      "support": 2161.0
+    }
+  }
+}

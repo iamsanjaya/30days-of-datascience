@@ -1,0 +1,43 @@
+{
+  "model_name": "tfidf_baseline",
+  "accuracy": 0.7718648773715873,
+  "macro_f1": 0.6759676080115281,
+  "weighted_f1": 0.7527888819059546,
+  "train_seconds": 3.0050477760000263,
+  "inference_seconds": 0.0008237139999778265,
+  "inference_seconds_per_1000": 0.0003811726052650747,
+  "model_size_mb": 0.6067533493041992,
+  "classification_report": {
+    "negative": {
+      "precision": 0.7876376988984088,
+      "recall": 0.9456282145481264,
+      "f1-score": 0.859432387312187,
+      "support": 1361.0
+    },
+    "neutral": {
+      "precision": 0.65,
+      "recall": 0.3982494529540481,
+      "f1-score": 0.49389416553595655,
+      "support": 457.0
+    },
+    "positive": {
+      "precision": 0.805668016194332,
+      "recall": 0.5801749271137027,
+      "f1-score": 0.6745762711864407,
+      "support": 343.0
+    },
+    "accuracy": 0.7718648773715873,
+    "macro avg": {
+      "precision": 0.7477685716975803,
+      "recall": 0.641350864871959,
+      "f1-score": 0.6759676080115281,
+      "support": 2161.0
+    },
+    "weighted avg": {
+      "precision": 0.7613924283921288,
+      "recall": 0.7718648773715873,
+      "f1-score": 0.7527888819059546,
+      "support": 2161.0
+    }
+  }
+}

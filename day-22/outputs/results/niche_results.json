@@ -1,0 +1,27 @@
+{
+  "baseline_cnn": {
+    "accuracy": 0.11999999731779099,
+    "loss": 2.304086685180664
+  },
+  "cnn_augmented": {
+    "accuracy": 0.1066666692495346,
+    "loss": 2.2992537021636963
+  },
+  "transfer_learning_frozen": {
+    "accuracy": 0.9066666960716248,
+    "loss": 0.31924015283584595
+  },
+  "transfer_learning": {
+    "accuracy": 0.9066666960716248,
+    "loss": 0.3123771846294403
+  },
+  "transfer_learning_tta": {
+    "accuracy": 0.9133333333333333
+  },
+  "pseudo_labeling": {
+    "accuracy": 0.9133333563804626,
+    "loss": 0.29007816314697266,
+    "n_pseudo_labels_kept": 893,
+    "pseudo_label_accuracy": 0.9932810750279956
+  }
+}

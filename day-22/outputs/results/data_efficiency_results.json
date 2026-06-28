@@ -1,0 +1,32 @@
+[
+  {
+    "fraction": 1.0,
+    "train_size": 17493,
+    "test_accuracy": 0.9871965646743774,
+    "test_loss": 0.05088208615779877
+  },
+  {
+    "fraction": 0.5,
+    "train_size": 8746,
+    "test_accuracy": 0.9866631031036377,
+    "test_loss": 0.055191826075315475
+  },
+  {
+    "fraction": 0.25,
+    "train_size": 4373,
+    "test_accuracy": 0.9885302782058716,
+    "test_loss": 0.038900695741176605
+  },
+  {
+    "fraction": 0.1,
+    "train_size": 1749,
+    "test_accuracy": 0.9839957356452942,
+    "test_loss": 0.059137169271707535
+  },
+  {
+    "fraction": 0.05,
+    "train_size": 874,
+    "test_accuracy": 0.9847959280014038,
+    "test_loss": 0.06226558983325958
+  }
+]

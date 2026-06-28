@@ -1,0 +1,7 @@
+technique,test_accuracy
+pseudo_labeling,0.9133333563804626
+transfer_learning_tta,0.9133333333333333
+transfer_learning_frozen,0.9066666960716248
+transfer_learning,0.9066666960716248
+baseline_cnn,0.11999999731779099
+cnn_augmented,0.1066666692495346

@@ -1,0 +1,13 @@
+{
+  "noise_level": 0.2,
+  "n_numeric_cols_perturbed": 36,
+  "clean": {
+    "rmse": 25120.669945262187,
+    "rmsle": 0.1086346762693014
+  },
+  "noisy": {
+    "rmse": 31427.56966403588,
+    "rmsle": 0.14336996230675253
+  },
+  "rmse_degradation_pct": 25.106415284769064
+}

@@ -1,0 +1,13 @@
+{
+  "corruption_fraction": 0.1,
+  "n_labels_corrupted": 59,
+  "clean_labels": {
+    "rmse": 25120.669945262187,
+    "rmsle": 0.1086346762693014
+  },
+  "corrupted_labels": {
+    "rmse": 52944.938809474086,
+    "rmsle": 0.23237403385424776
+  },
+  "rmse_degradation_pct": 110.762447517685
+}

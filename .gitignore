@@ -1,32 +1,45 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
+# ==========================================
+# Environments & Secrets (CRITICAL)
+# ==========================================
 .env
+.env.*
+!.env.example
 
-# Virtual environment
-ml-env/
+# ==========================================
+# Virtual Environments
+# ==========================================
 venv/
 env/
+.venv/
+ml-env/
+project-env/
 
-# VS Code
-.vscode/
+# ==========================================
+# Python Artifacts & Caching
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
 
-# Jupyter
-.ipynb_checkpoints/
-
-# macOS
-.DS_Store
-
-#Data (optional — remove if you want datasets on GitHub)
-
-outputs/
-*.png
+# ==========================================
+# Data & Machine Learning Artifacts
+# ==========================================
 data/
 Gutenberg/
-project-env/
-.venv/
-
 models/
 *.joblib
 mlflow.db
+
+# ==========================================
+# IDEs & System Files
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Jupyter Notebooks
+# ==========================================
+.ipynb_checkpoints/

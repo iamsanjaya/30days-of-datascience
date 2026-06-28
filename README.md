@@ -51,7 +51,7 @@ real projects, not just watching tutorials.
 | 20    | Training Dynamics                       | Regularization + LR Range Test             | ✅     |
 | 21    | CNNs — Transfer Learning                | ResNet + Grad-CAM                          | ✅     |
 | 22    | CNNs — Data Efficiency                  | Niche Domain Classifier                    | ✅     |
-| 23    | NLP Fundamentals                        | BoW to BERT + Failure Forensics            | ⏳     |
+| 23    | NLP Fundamentals                        | BoW to BERT + Failure Forensics            | ✅     |
 | 24-25 | Capstone #1                             | Structured Data ML Project                 | ⏳     |
 | 26-27 | Capstone #2                             | Deep Learning / NLP + Live Demo            | ⏳     |
 | 28    | SQL for Data Science                    | HackerRank + Pandas-to-SQL                 | ⏳     |
@@ -543,6 +543,55 @@ Each entry covers:
     │   │   └── resnet50_subset_100pct.keras          # ResNet50 trained on full dataset
     │   └── README.md                                 # Project documentation and experiment analysis
     │
+    ├── day-23/            ← NLP Fundamentals :  BoW to BERT + Failure Forensics
+    │   ├── 01_data_preparation.py           # Data cleaning, preprocessing, train/val/test split
+    │   ├── 02_train_tfidf_baseline.py       # TF-IDF + Logistic Regression baseline model
+    │   ├── 03_train_word2vec_lstm.py        # Word2Vec embedding generation and LSTM training
+    │   ├── 04_train_bert.py                 # DistilBERT fine-tuning for sentiment classification
+    │   ├── 05_compare_models.py             # Compare TF-IDF, LSTM, and BERT performance
+    │   ├── 06_bert_failure_forensics.py     # Analyze BERT misclassifications and failure patterns
+    │   ├── README.md                        # Project documentation and results summary
+    │   ├── config.py                        # Central configuration, paths, and hyperparameters
+    │   ├── data
+    │   │   ├── processed
+    │   │   │   ├── test.csv                 # Held-out test dataset
+    │   │   │   ├── train.csv                # Training dataset
+    │   │   │   └── val.csv                  # Validation dataset
+    │   │   └── raw
+    │   │       └── tweets.csv               # Original Twitter US Airline Sentiment dataset
+    │   ├── models
+    │   │   ├── distilbert_sentiment         # Fine-tuned DistilBERT model and tokenizer files
+    │   │   │   ├── config.json              # DistilBERT configuration
+    │   │   │   ├── model.safetensors        # Fine-tuned model weights
+    │   │   │   ├── tokenizer.json           # Tokenizer vocabulary and settings
+    │   │   │   └── tokenizer_config.json    # Tokenizer configuration
+    │   │   ├── tfidf_logreg.joblib          # Trained Logistic Regression model
+    │   │   ├── tfidf_vectorizer.joblib      # Fitted TF-IDF vectorizer
+    │   │   └── word2vec_lstm.keras          # Trained Word2Vec-LSTM model
+    │   ├── outputs
+    │   │   ├── bert_confident_failures.csv      # High-confidence BERT prediction errors
+    │   │   ├── bert_negation_rule_effect.csv    # Negation analysis results
+    │   │   ├── class_distribution.png           # Dataset class distribution visualization
+    │   │   ├── confusion_matrix_bert.png        # BERT confusion matrix
+    │   │   ├── confusion_matrix_tfidf_baseline.png
+    │   │   ├── confusion_matrix_word2vec_lstm.png
+    │   │   ├── metrics_bert.json                # BERT evaluation metrics
+    │   │   ├── metrics_tfidf_baseline.json      # TF-IDF baseline metrics
+    │   │   ├── metrics_word2vec_lstm.json       # LSTM evaluation metrics
+    │   │   ├── model_comparison.csv             # Consolidated model comparison table
+    │   │   ├── model_comparison.png             # Model comparison visualization
+    │   │   ├── training_curves_bert.png         # BERT training and validation curves
+    │   │   └── training_curves_word2vec_lstm.png
+    │   └── utils
+    │       ├── __init__.py                  # Package initialization
+    │       ├── architectures.py             # Neural network architectures
+    │       ├── bert_utils.py                # BERT training and inference helpers
+    │       ├── data.py                      # Data loading utilities
+    │       ├── embeddings.py                # Word2Vec embedding utilities
+    │       ├── preprocessing.py             # Text cleaning and preprocessing pipeline
+    │       ├── text_features.py             # TF-IDF and feature engineering utilities
+    │       └── training.py                  # Shared training and evaluation functions
+    │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -565,7 +614,8 @@ Each entry covers:
         ├── day-19.md
         ├── day-20.md
         ├── day-21.md
-        └── day-22.md
+        ├── day-22.md
+        └── day-23.md
 
 ---
 

@@ -1,0 +1,11 @@
+filepath,true_label,pred_label,confidence,correct
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Cat/4489.jpg,cat,cat,2.857046738947988e-13,True
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Cat/6840.jpg,cat,cat,3.41386851232528e-07,True
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/9859.jpg,dog,dog,1.0,True
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Cat/1873.jpg,cat,cat,5.303411182433493e-11,True
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Cat/2876.jpg,cat,cat,2.9465911318988375e-14,True
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/3035.jpg,dog,cat,0.002632414922118187,False
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/584.jpg,dog,cat,0.18864378333091736,False
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/5231.jpg,dog,cat,0.322048544883728,False
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/1864.jpg,dog,cat,0.08643907308578491,False
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Cat/10625.jpg,cat,dog,0.9997641444206238,False

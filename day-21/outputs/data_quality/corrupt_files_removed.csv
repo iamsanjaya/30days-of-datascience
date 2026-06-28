@@ -1,0 +1,10 @@
+filepath,label,reason
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Cat/10404.jpg,0,undecodable_by_tf: InvalidArgumentError
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Cat/4351.jpg,0,undecodable_by_tf: InvalidArgumentError
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Cat/666.jpg,0,zero_byte_file
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/11233.jpg,1,undecodable_by_tf: InvalidArgumentError
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/11702.jpg,1,zero_byte_file
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/11912.jpg,1,undecodable_by_tf: InvalidArgumentError
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/2317.jpg,1,undecodable_by_tf: InvalidArgumentError
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/2494.jpg,1,undecodable_by_tf: InvalidArgumentError
+/Users/sanjayachaudhary/Desktop/projects/day-21/data/raw/PetImages/Dog/9500.jpg,1,undecodable_by_tf: InvalidArgumentError

@@ -1,0 +1,12 @@
+INSIGHT: Clustering is a Lens, Not a Truth
+------------------------------------------
+Different values of K produce different but internally consistent narratives.
+
+K=3 provides a coarse business segmentation: budget, average, premium.
+K=5 introduces actionable subgroups such as high-spend risk and conservative wealth segments.
+K=8 fragments existing structure without adding proportional business value.
+
+Higher K improves fit metrics slightly but reduces interpretability and decision clarity.
+Therefore, the "best K" is not mathematical alone — it is defined by the decision context.
+
+Clustering should be treated as a tool for shaping perspective, not discovering objective categories.

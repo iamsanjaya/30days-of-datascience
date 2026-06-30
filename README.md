@@ -52,7 +52,7 @@ real projects, not just watching tutorials.
 | 21    | CNNs — Transfer Learning                | ResNet + Grad-CAM                          | ✅     |
 | 22    | CNNs — Data Efficiency                  | Niche Domain Classifier                    | ✅     |
 | 23    | NLP Fundamentals                        | BoW to BERT + Failure Forensics            | ✅     |
-| 24-25 | Capstone #1                             | Structured Data ML Project                 | ⏳     |
+| 24-25 | Capstone #1                             | Structured Data ML Project                 | ✅     |
 | 26-27 | Capstone #2                             | Deep Learning / NLP + Live Demo            | ⏳     |
 | 28    | SQL for Data Science                    | HackerRank + Pandas-to-SQL                 | ⏳     |
 | 29    | Interview Prep                          | Think Out Loud + Original Questions        | ⏳     |
@@ -592,6 +592,56 @@ Each entry covers:
     │       ├── text_features.py             # TF-IDF and feature engineering utilities
     │       └── training.py                  # Shared training and evaluation functions
     │
+    ├── capstone-1         ← Structured Data ML Project: home-credit-default-risk
+    │   ├── 01_data_prep.py                 # load raw CSV, fix anomalies, drop junk columns, export clean parquet
+    │   ├── 02_eda.py                       # visualize default patterns across key features
+    │   ├── 03_feature_engineering.py       # create ratio/log features, export features parquet
+    │   ├── 04_train_baseline_models.py     # compare LR, RF, LightGBM with stratified CV
+    │   ├── 05_tune_best_model_optuna.py    # Bayesian HPO on LightGBM, log all trials to MLflow
+    │   ├── 06_final_eval_shap.py           # holdout evaluation, bootstrap CI, SHAP top-5
+    │   ├── README.md                       # project overview, results, methodology
+    │   ├── config.py                       # paths, column lists, model constants
+    │   ├── data/
+    │   │   └── raw/
+    │   │       └── application_train.csv   # raw Kaggle dataset — 307K rows, 122 features
+    │   ├── docs/
+    │   │   ├── problem_framing.md          # business context, success metrics, stakeholder framing
+    │   │   └── risk_report.md              # deployment risks, data drift scenarios, failure modes
+    │   ├── mlruns/                         # MLflow experiment store — auto-generated, do not edit
+    │   │   └── 1/
+    │   │       └── models/
+    │   │           └── m-4fe7c45d.../
+    │   │               └── artifacts/
+    │   │                   ├── MLmodel             # MLflow model metadata
+    │   │                   ├── conda.yaml          # conda env spec
+    │   │                   ├── model.skops         # serialized model (skops format)
+    │   │                   ├── python_env.yaml     # python env spec
+    │   │                   └── requirements.txt    # pip dependencies for this run
+    │   ├── models/
+    │   │   └── lightgbm_tuned.joblib               # best tuned model saved with joblib
+    │   ├── outputs/
+    │   │   ├── application_train_clean.parquet     # cleaned data from 01_data_prep.py
+    │   │   ├── application_train_features.parquet  # engineered features from 03_feature_engineering.py
+    │   │   ├── bootstrap_ci_results.csv            # 95% CI on final model metrics
+    │   │   ├── eda/
+    │   │   │   ├── 01_days_employed_anomaly_vs_default.png     # 365243 placeholder anomaly analysis
+    │   │   │   ├── 02_ext_source_missingness_vs_default.png    # missingness as a signal
+    │   │   │   ├── 03_credit_income_ratio_vs_default.png       # engineered ratio vs target
+    │   │   │   └── 04_income_type_vs_default.png               # default rate by employment type
+    │   │   ├── model_comparison.csv                            # CV ROC-AUC for all baseline models
+    │   │   ├── optuna/
+    │   │   │   ├── 01_optimization_history.png                 # trial scores over time
+    │   │   │   ├── 02_param_importances.png                    # which hyperparams mattered most
+    │   │   │   └── 03_parallel_coordinate.png                  # param combinations vs score
+    │   │   ├── shap/
+    │   │   │   ├── 01_shap_summary_top5.png                    # beeswarm plot — direction + magnitude
+    │   │   │   └── 02_shap_bar_top5.png                        # mean |SHAP| bar chart
+    │   │   └── shap_top5_features.csv                          # top-5 feature names + mean SHAP values
+    │   └── utils/
+    │       ├── __init__.py                     # makes utils a package
+    │       ├── data_utils.py                   # reusable loaders, cleaners, train/test splitters
+    │       └── plot_utils.py                   # reusable chart helpers used across scripts
+    │
     └── learning-journal/
         ├── day-01.md
         ├── day-02.md
@@ -615,7 +665,8 @@ Each entry covers:
         ├── day-20.md
         ├── day-21.md
         ├── day-22.md
-        └── day-23.md
+        ├── day-23.md
+        └── capstone-1.md
 
 ---
 

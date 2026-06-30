@@ -44,6 +44,7 @@ pillow==10.3.0
 mlflow==3.14.0
 optuna==4.9.0
 xgboost==2.1.0
+lightgbm==4.3.0
 
 # ======================
 # JUPYTER STACK (MINIMAL)

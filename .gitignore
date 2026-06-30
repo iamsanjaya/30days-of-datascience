@@ -30,7 +30,7 @@ Gutenberg/
 models/
 *.joblib
 mlflow.db
-
+mlruns/
 # ==========================================
 # IDEs & System Files
 # ==========================================

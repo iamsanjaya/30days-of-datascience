@@ -1,0 +1,6 @@
+metric,value
+test_roc_auc_point_estimate,0.7712
+bootstrap_mean,0.7713
+ci_lower_95,0.765
+ci_upper_95,0.7777
+n_bootstrap,1000.0
